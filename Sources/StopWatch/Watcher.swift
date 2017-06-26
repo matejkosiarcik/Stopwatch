@@ -24,12 +24,13 @@ public final class Watcher {
 
 // MARK: - Updating
 extension Watcher {
-    private func update(timer: Timer) {
-        guard self.isActive else { timer.invalidate(); return }
+    private func update() {
+        guard self.isActive else { return }
         let current = Date()
         let interval = Interval(cumulative: self.laps.first!.timeIntervalSince(current),
                                 lapped: self.laps.last!.timeIntervalSince(current))
         self.onUpdate(interval)
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + self.updateInterval) { self.update() }
     }
 }
 
@@ -38,7 +39,7 @@ extension Watcher {
     public func start() {
         self.laps.append(Date())
         self.isActive = true
-        _ = Timer.scheduledTimer(withTimeInterval: self.updateInterval, repeats: true, block: self.update)
+        self.update()
     }
 
     public func stop() {
