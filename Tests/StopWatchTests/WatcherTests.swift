@@ -35,7 +35,7 @@ extension WatcherTest {
         wait(for: [exp], timeout: 0.45)
 
         // then
-        expect(collector.count) == 4
+        expect(collector.count) == 5
     }
 
     func testStopping() {
