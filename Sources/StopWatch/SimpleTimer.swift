@@ -5,10 +5,11 @@
 
 import Foundation
 
-public final class SimpleTimer {
+final class SimpleTimer {
+    var isActive = false
+
     private let onUpdate: (TimeInterval) -> Void
     private let updateInterval: TimeInterval
-    private var isActive = false
     private var startDate = Date.distantPast
 
     // MARK: De/Init
@@ -34,14 +35,14 @@ extension SimpleTimer {
 
 // MARK: - Start/Stop
 extension SimpleTimer {
-    public func start() {
+    func start() {
         self.isActive = true
         self.startDate = Date()
         self.update()
     }
 
     @discardableResult
-    public func stop() -> TimeInterval {
+    func stop() -> TimeInterval {
         self.isActive = false
         return self.startDate.timeIntervalSince(Date())
     }

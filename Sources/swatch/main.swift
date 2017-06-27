@@ -51,12 +51,13 @@ func setupStandardInput() {
 
 func main() {
     setupStandardInput()
-    let timer = SimpleTimer(each: 0.005) { print(abs($0).formatted, terminator: "\r"); fflush(stdout) }
+    let timer = PauseTimer(each: 0.005) { print(abs($0).formatted, terminator: "\r"); fflush(stdout) }
     timer.start()
     loop: while true {
         guard let input = readCharacter(from: .standardInput) else { continue }
         shell("clear")
         if input == .esc { break loop }
+        else if input == Character(" ") { timer.isActive ? _ = timer.stop() : timer.start() }
     }
     let last = timer.stop()
     print(abs(last).formatted)
