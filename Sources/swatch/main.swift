@@ -51,16 +51,24 @@ func setupStandardInput() {
 
 func main() {
     setupStandardInput()
-    let timer = PauseTimer(each: 0.005) { print(abs($0).formatted, terminator: "\r"); fflush(stdout) }
+    var timer = StopWatch.Timer()
+
+    func report() {
+        print(timer.current.formatted, terminator: "\r")
+        fflush(stdout)
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.05) { report() }
+    }
+    report()
+
     timer.start()
     loop: while true {
         guard let input = readCharacter(from: .standardInput) else { continue }
         shell("clear")
         if input == .esc { break loop }
-        else if input == Character(" ") { timer.isActive ? _ = timer.stop() : timer.start() }
+        else if input == Character(" ") { timer.status == .stopped ? timer.start() : timer.stop() }
+        else if input == Character("\r") || input == Character("\n") { timer.lap() }
     }
-    let last = timer.stop()
-    print(abs(last).formatted)
+    timer.stop()
 }
 
 main()
