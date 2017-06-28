@@ -12,8 +12,8 @@ final class ShellTest: XCTestCase {}
 extension ShellTest {
     func testExitCode() {
         // given
-        let command = "exit 29"
-        let expected: Int32 = 29
+        let command = "exit 42"
+        let expected: Int32 = 42
 
         // when
         let exitCode = shell(command)
