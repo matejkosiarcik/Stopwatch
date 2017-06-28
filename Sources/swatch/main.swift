@@ -10,19 +10,6 @@ extension Character {
     static let esc = Character("\u{1B}")
 }
 
-extension TimeInterval {
-    var formatted: String {
-        let interval = Int(self * 1000)
-
-        let miliSeconds = interval % 1000
-        let seconds = (interval / 1000) % 60
-        let minutes = (interval / 1000 / 60) % 60
-        let hours = (interval / 1000 / 60 / 60)
-
-        return String(NSString(format: "%0.2d:%0.2d:%0.2d.%0.3d", hours, minutes, seconds, miliSeconds))
-    }
-}
-
 @discardableResult
 func shell(_ command: String) -> Int32 {
     let task = Process()
