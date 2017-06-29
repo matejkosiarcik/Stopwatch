@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# format
+# Copyright © 2017 Matej Kosiarcik. All rights reserved.
+# This file contains formatting procedures for project's source code
+#
+
+# setup
+cd "$(dirname $0)/.."
+set -euf
+
+swiftlint autocorrect

@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# lint
+# Copyright © 2017 Matej Kosiarcik. All rights reserved.
+# This file contains lint procedures for project's source code
+#
+
+# setup
+cd "$(dirname $0)/.."
+set -euf
+
+swiftlint lint 2>/dev/null
