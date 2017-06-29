@@ -1,0 +1,7 @@
+---
+extends: default
+
+# For all rules
+ignore: |
+    .build/
+...

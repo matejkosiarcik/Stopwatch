@@ -15,3 +15,26 @@ if command -v swiftlint >/dev/null 2>&1; then
 else
     printf "%s\n" "warning: swiftlint not found. (tool_not_found)"
 fi
+
+# Markdown
+if command -v mdl >/dev/null 2>&1; then
+    mdl .
+else
+    printf "%s\n" "warning: markdownlint(mdl) not found. (tool_not_found)"
+fi
+
+# Yaml
+if command -v yamllint >/dev/null 2>&1; then
+    yamllint  -f parsable -c .yamllint.yml .
+else
+    printf "%s\n" "warning: yamllint not found. (tool_not_found)"
+fi
+
+# Shell
+if command -v shellcheck >/dev/null 2>&1; then
+    SHELL_FILES=$(find -E "./Tools" -type f | tr "\n" " ")
+    # shellcheck disable=SC2086
+    [ ! -z "${SHELL_FILES}" ] && shellcheck -f gcc ${SHELL_FILES}
+else
+    printf "%s\n" "warning: shellcheck not found. (tool_not_found)"
+fi
