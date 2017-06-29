@@ -32,7 +32,7 @@ func updateInfo(for timer: lib.Timer) {
     report(time: timer.current.formatted)
 }
 
-func main() {
+func program() {
     setupStandardInput()
     var timer = lib.Timer()
 
@@ -55,4 +55,23 @@ func main() {
     updateInfo(for: timer)
 }
 
-main()
+func main(arguments: [String]) {
+    let arguments = Array(arguments.dropFirst())
+    let help = """
+    Usage: swatch [options]
+        -h, --help  Show help message
+    """
+
+    switch arguments.count {
+    case 0:
+        program()
+    case 1:
+        if arguments.contains("-h") || arguments.contains("--help") { print(help) }
+        else { print("Unrecognized option:", arguments[0]); print(help) }
+    default:
+        print("Unrecognized options:", arguments.map { "'\($0)'" }.joined(separator: ", "))
+        print(help)
+    }
+}
+
+main(arguments: CommandLine.arguments)
