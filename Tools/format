@@ -6,7 +6,7 @@
 #
 
 # setup
-cd "$(dirname $0)/.."
 set -euf
+cd "$(dirname "${0}")/.."
 
 swiftlint autocorrect
