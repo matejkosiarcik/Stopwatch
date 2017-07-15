@@ -4,4 +4,10 @@ extends: default
 # For all rules
 ignore: |
     .build/
+    build/
+    Carthage/
+    fastlane/
+    Generated/
+    Packages/
+    Pods/
 ...
