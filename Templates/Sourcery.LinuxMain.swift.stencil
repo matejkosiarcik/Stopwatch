@@ -1,0 +1,19 @@
+//
+// Sourcery.LinuxMain.swift.stencil - original
+// Copyright © 2017 Matej Kosiarcik. All rights reserved.
+// {# This file is template to generate other source files #}
+
+{{ argument.testimports }}
+
+{% for type in types.classes|based:"XCTestCase" %}
+{% if not type.annotations.disableTests %}extension {{ type.name }} {
+    static var allTests = [
+    {% for method in type.methods %}{% if method.parameters.count == 0 and method.shortName|hasPrefix:"test" %}    ("{{ method.shortName }}", {{ method.shortName }}),
+    {% endif %}{% endfor %}]
+}
+
+{% endif %}{% endfor %}
+
+XCTMain([
+{% for type in types.classes|based:"XCTestCase" %}{% if not type.annotations.disableTests %}    testCase({{ type.name }}.allTests),
+{% endif %}{% endfor %}])

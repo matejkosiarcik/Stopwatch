@@ -11,4 +11,5 @@ cd "$(dirname "${0}")/.."
 
 # Run this pre-build stages
 ./Tools/format
+./Tools/codegen
 ./Tools/lint
