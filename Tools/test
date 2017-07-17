@@ -11,7 +11,9 @@ cd "$(dirname "${0}")/.."
 . ./Tools/helpers.sh
 
 # Run classic build
-./Tools/build "${@}"
+if [ "${#}" -eq "0" ]; then ./Tools/build
+else ./Tools/build "${@}"; fi
 
-# SwiftPM
-swift test "${@}"
+# Swift compiler
+if [ "${#}" -eq "0" ]; then swift test
+else swift test "${@}"; fi

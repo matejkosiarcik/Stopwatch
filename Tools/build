@@ -13,5 +13,6 @@ cd "$(dirname "${0}")/.."
 # Pre build stages
 ./Tools/prepare
 
-# SwiftPM
-swift build "${@}"
+# Swift compiler
+if [ "${#}" -eq "0" ]; then swift build
+else swift build "${@}"; fi
