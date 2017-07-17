@@ -1,7 +1,24 @@
 {
   "object": {
     "pins": [
-
+      {
+        "package": "CommandLine",
+        "repositoryURL": "https://github.com/rxwei/CommandLine.git",
+        "state": {
+          "branch": null,
+          "revision": "5f915a906bd49024d970b4da6c839c456ac5e5ca",
+          "version": "3.0.2"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "c8446185238659a2b27c0261f64ff1254291d07d",
+          "version": "3.2.3"
+        }
+      }
     ]
   },
   "version": 1
