@@ -36,3 +36,5 @@ check() (
     fi
     return "${doesExist}"
 )
+
+alias git-files='git ls-tree -r --name-only "HEAD"'
