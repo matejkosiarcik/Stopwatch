@@ -11,12 +11,10 @@ cd "$(dirname "${0}")/.."
 . ./Tools/helpers.sh
 
 # Sourcery
-if command -v sourcery >/dev/null 2>&1; then
+if check sourcery; then
     target="Tests/LinuxMain.swift"
     sourcery --sources Tests/ --templates Templates/Sourcery.LinuxMain.swift.stencil \
         --args testimports='@testable import cliTests
 @testable import libTests' --output "${target}" >/dev/null
     strip "${target}"
-else
-    printf "%s\n" "warning: sourcery not found. (tool_not_found)"
 fi
