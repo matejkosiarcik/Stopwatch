@@ -8,13 +8,8 @@
 # setup
 set -euf
 cd "$(dirname "${0}")/.."
+. ./Tools/helpers.sh
 
-# All
-# this removes excessive whitespace
-strip() {
-    printf "%s\n" "$(cat -s "${1}")" >"${1}"                   # strip multiple empty lines and trailing newlines
-    printf "%s\n" "$(sed 's~[[:space:]]*$~~' <"${1}")" >"${1}" # remove trailing whitespace
-}
 git ls-tree -r --name-only "HEAD" | while IFS= read -r file; do
     strip "${file}"
 done
