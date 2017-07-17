@@ -6,8 +6,9 @@
 import cli
 import Foundation
 
-let result = Program.new(for: CommandLine.arguments).map { $0.main() }
+var helperOutput = ""
+let result = Program.new(for: CommandLine.arguments).map { $0.main(output: &helperOutput) }
 switch result {
-case .success(let exitCode): exit(exitCode)
+case .success(let exitCode): print(helperOutput); exit(exitCode)
 case .failure(let error): print(error.description); exit(1)
 }

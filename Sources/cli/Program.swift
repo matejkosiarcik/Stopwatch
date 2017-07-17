@@ -23,11 +23,11 @@ extension Program {
 }
 
 extension Program {
-    public func main() -> ExitCode {
+    public func main(output: inout String) -> ExitCode {
         if self.arguments.help {
-            print(self.help())
+            print(self.help(), to: &output)
         } else if self.arguments.version {
-            print(self.version())
+            print(self.version(), to: &output)
         } else {
             type(of: self).setUp()
             self.runStopWatch()
@@ -59,11 +59,11 @@ extension Program {
 }
 
 extension Program {
-    func help() -> String {
+    private func help() -> String {
         return self.arguments.usage
     }
 
-    func version() -> String {
+    private func version() -> String {
         return """
         StopWatch - CLI stopwatch application
         version: 0.1.0

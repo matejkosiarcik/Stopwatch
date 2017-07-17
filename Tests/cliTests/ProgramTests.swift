@@ -8,6 +8,7 @@ import XCTest
 
 final class ProgramTests: XCTestCase {}
 
+// Initialization
 extension ProgramTests {
     func testCreation() {
         // given
@@ -28,5 +29,37 @@ extension ProgramTests {
             case .failure(let x): XCTFail(String(describing: x) + " " + $0.offset.description)
             }
         }
+    }
+}
+
+// Running
+extension ProgramTests {
+    func testHelpOutput() {
+        // given
+        let programs = [true, false]
+            .map { Program(arguments: Arguments(path: "", help: true, version: $0, usage: "usage")) }
+        let expected = [Program.ExitCode](repeating: 0, count: programs.count)
+        var output = ""
+
+        // when
+        let exitCodes = programs.map { $0.main(output: &output) }
+
+        // then
+        XCTAssertEqual(exitCodes, expected)
+        XCTAssertTrue(output.lowercased().contains("usage"))
+    }
+
+    func testVersionOutput() {
+        // given
+        let program = Program(arguments: Arguments(path: "", help: false, version: true, usage: ""))
+        var output = ""
+        let expected: Program.ExitCode = 0
+
+        // when
+        let exitCode = program.main(output: &output)
+
+        // then
+        XCTAssertEqual(exitCode, expected)
+        XCTAssertTrue(output.lowercased().contains("version"))
     }
 }
