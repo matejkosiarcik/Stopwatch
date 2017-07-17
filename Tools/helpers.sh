@@ -1,9 +1,10 @@
-#!/bin/sh
 #
 # helpers.sh
 # Copyright © 2017 Matej Kosiarcik. All rights reserved.
 # This file contains helper functions for other tools
 #
+
+# shellcheck shell=sh
 
 # this removes excessive whitespace
 # accepts 1 argument of file to format
