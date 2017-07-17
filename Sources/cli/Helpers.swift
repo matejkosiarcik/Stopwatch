@@ -20,3 +20,7 @@ public func shell(_ command: String) -> Int32 {
     task.waitUntilExit()
     return task.terminationStatus
 }
+
+func crash<T>(_ message: String) -> T {
+    fatalError(message)
+}
