@@ -6,7 +6,7 @@
 import CommandLineKit
 import Foundation
 
-internal extension CommandLineKit.CommandLine {
+extension CommandLineKit.CommandLine {
     var usage: String {
         var usage = ""
         self.printUsage(&usage)

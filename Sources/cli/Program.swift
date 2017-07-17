@@ -94,6 +94,7 @@ private func updateInfo(for timer: lib.Timer) {
     print(line: timer.current.formatted)
 }
 
+// swiftlint:disable:next no_extension_access_modifier
 private extension Character {
     static let esc = Character("\u{1B}")
 }
