@@ -53,10 +53,9 @@ has_suffix() { case "${1}" in *"${2}") true ;; *) false ;; esac; }
 # also works when command "git" is not found
 # accepts 0 arguments
 git_files() {
-    find "." -type f | while IFS= read -r file; do
+    find "." -type f -not -path "*.git/*" | while IFS= read -r file; do
         if exists git && git check-ignore "${file}" >/dev/null 2>&1; then continue; fi       # if git exists and ignores this file
         if has_prefix "${file}" "./"; then file="$(printf "%s\n" "${file}" | cut -c 3-)"; fi # remove leading ./ from file path
-        if has_prefix "${file}" ".git/"; then continue; fi                                   # if the path is in '.git' directory
         printf "%s\n" "${file}"
     done
 }
