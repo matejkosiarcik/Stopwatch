@@ -10,6 +10,7 @@ set -euf
 cd "$(dirname "${0}")/.."
 
 # this removes excessive whitespace
+# accepts single argument of file to format
 strip() {
     printf "%s\n" "$(cat -s "${1}")" >"${1}"                   # strip multiple empty lines and trailing newlines
     printf "%s\n" "$(sed 's~[[:space:]]*$~~' <"${1}")" >"${1}" # remove trailing whitespace
