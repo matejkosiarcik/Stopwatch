@@ -29,7 +29,6 @@ fi
 shell_files() { find "./Tools" -type f -not -name "\.*" -and -not -name "*\.md"; }
 if check shellcheck; then
     shell_files | while IFS= read -r file; do
-        echo "${file}"
         shellcheck --external-sources "./Tools/helpers.sh" --format gcc "${file}" || true
     done
 fi
