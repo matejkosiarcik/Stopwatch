@@ -1,15 +1,15 @@
 //
-// ReadingTests.swift
+// HelpersTests.swift
 // Copyright © 2017 Matej Kosiarcik. All rights reserved.
 //
 
 @testable import cli
 import XCTest
 
-final class ReadingTest: XCTestCase {}
+final class HelpersTest: XCTestCase {}
 
-extension ReadingTest {
-    func testReadingSingleCharacter() {
+extension HelpersTest {
+    func testCharacterReading() {
         // given
         let filePath = NSTemporaryDirectory().appending("/" + UUID().uuidString + ".txt.tmp")
         FileManager.default.createFile(atPath: filePath, contents: "abc".data(using: .ascii))
@@ -22,4 +22,17 @@ extension ReadingTest {
         // then
         XCTAssertEqual(char, expected)
     }
+
+    func testShellExitCode() {
+        // given
+        let command = "exit 42"
+        let expected: Int32 = 42
+
+        // when
+        let exitCode = shell(command)
+
+        // then
+        XCTAssertEqual(exitCode, expected)
+    }
 }
+
