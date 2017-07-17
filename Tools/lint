@@ -33,7 +33,7 @@ fi
 # Shell
 if command -v shellcheck >/dev/null 2>&1; then
     find "./Tools" -type f -not -name "\.*" | while IFS= read -r file; do
-        shellcheck --format gcc "${file}" || true
+        shellcheck --external-sources "./Tools/helpers.sh" --format gcc "${file}" || true
     done
 else
     printf "%s\n" "warning: shellcheck not found. (tool_not_found)"
