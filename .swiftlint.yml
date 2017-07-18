@@ -6,7 +6,6 @@ excluded:
     - build
     - Carthage
     - fastlane
-    - Generated
     - Packages
     - Pods
 
