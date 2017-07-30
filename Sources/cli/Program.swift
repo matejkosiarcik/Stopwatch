@@ -84,15 +84,23 @@ extension Program {
     }
 }
 
+extension Program {
+    func formatted(laps: [lib.Timer.Lap]) -> String {
+        return laps.map { $0.formatted }.joined(separator: "\n")
+    }
+}
+
 private func print(line: String = "") {
     print(line, terminator: "\r")
     fflush(stdout) // force terminal to print message; because when buffered it can wait till \n is printed
 }
 
-private func updateInfo(for timer: lib.Timer) {
-    shell("clear")
-    timer.laps.map { $0.formatted }.forEach { print($0) }
-    print(line: timer.current.formatted)
+private extension Program {
+    private func updateInfo(for timer: lib.Timer) {
+        shell("clear")
+        print(self.formatted(laps: timer.laps))
+        print(line: timer.current.formatted)
+    }
 }
 
 // swiftlint:disable:next no_extension_access_modifier
