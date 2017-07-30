@@ -29,6 +29,7 @@ extension Program {
         } else if self.arguments.version {
             print(self.version(), to: &output)
         } else {
+            // TODO: change type(of: ) to Self, after SE-0068 is implemented
             type(of: self).setUp()
             self.runStopWatch()
         }
