@@ -6,9 +6,9 @@
 import Foundation
 
 public struct Timer {
-    public private(set) var laps = [TimeInterval]()
     public private(set) var status = Status.stopped
 
+    private var _laps = [TimeInterval]()
     private var previous: TimeInterval = 0
 
     public init() {}
@@ -40,8 +40,14 @@ extension Timer {
 }
 
 extension Timer {
+    public var laps: [Lap] {
+        return zip(self._laps, [0] + self._laps.dropLast()).map { Lap(absolute: $0.0, relative: $0.0 - $0.1) }
+    }
+}
+
+extension Timer {
     public mutating func lap() {
-        self.laps.append(self.current)
+        self._laps.append(self.current)
     }
 }
 
