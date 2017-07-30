@@ -31,9 +31,7 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
+        delay(0.2)
 
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
@@ -50,9 +48,7 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
+        delay(0.2)
         timer.start()
 
         // then
@@ -70,9 +66,8 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { timer.stop(); exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
+        delay(0.2)
+        timer.stop()
 
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
@@ -89,9 +84,8 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { timer.stop(); exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
+        delay(0.2)
+        timer.stop()
         timer.stop()
 
         // then
@@ -112,9 +106,7 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
+        delay(0.2)
         timer.stop()
         timer.lap()
         timer.lap()
@@ -144,12 +136,10 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { timer.lap(); exp.fulfill() }
-        wait(for: [exp], timeout: 0.25)
-        let exp2 = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { timer.lap(); exp2.fulfill() }
-        wait(for: [exp2], timeout: 0.15)
+        delay(0.2)
+        timer.lap()
+        delay(0.1)
+        timer.lap()
 
         // then
         XCTAssertEqual(timer.laps.count, 2)
@@ -171,9 +161,8 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { timer.lap(); exp.fulfill() }
-        wait(for: [exp], timeout: 0.15)
+        delay(0.1)
+        timer.lap()
         timer.stop()
 
         // then
@@ -188,9 +177,8 @@ extension TimerTests {
 
         // when
         timer.start()
-        let exp2 = expectation(description: "")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { timer.lap(); exp2.fulfill() }
-        wait(for: [exp2], timeout: 0.15)
+        delay(0.1)
+        timer.lap()
         timer.stop()
         timer.lap()
         timer.lap()
