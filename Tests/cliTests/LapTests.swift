@@ -50,4 +50,3 @@ extension LapTests {
         XCTAssertEqual(formatted, expected)
     }
 }
-
