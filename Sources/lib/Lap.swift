@@ -7,8 +7,8 @@ import Foundation
 
 extension Timer {
     public struct Lap {
-        public var absolute: TimeInterval
-        public var relative: TimeInterval
+        public var absolute: TimeInterval // time from the very start
+        public var relative: TimeInterval // time from last lap
     }
 }
 
