@@ -42,7 +42,8 @@ extension HelpersTests {
         let tempURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("StopWatch-\(uuid.uuidString).txt")
         let mode = "w+"
-        guard let tempFile = fopen(UnsafePointer(tempURL.path), UnsafePointer(mode)) else { XCTFail("Temporary file not opened"); return }
+        guard let tempFile = fopen(UnsafePointer(tempURL.path), UnsafePointer(mode))
+            else { XCTFail("Temporary file not opened"); return }
 
         // when
         flushPrint(str, to: tempFile)
