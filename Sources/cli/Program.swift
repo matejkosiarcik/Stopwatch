@@ -51,11 +51,11 @@ extension Program {
             if input == .esc { break loop }
             else if input == Character(" ") { timer.status == .stopped ? timer.start() : timer.stop() }
             else if input == Character("\r") || input == Character("\n") { timer.lap() }
-            updateInfo(for: timer)
+            self.updateInfo(for: timer)
         }
         timer.lap()
         timer.stop()
-        updateInfo(for: timer)
+        self.updateInfo(for: timer)
     }
 }
 
