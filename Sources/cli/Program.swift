@@ -88,7 +88,8 @@ extension Program {
 private extension Program {
     func update(laps: [lib.Timer.Lap]) {
         _ = shell("clear")
-        print(laps.formatted)
+        let laps = laps.formatted
+        if laps != "" { print(laps) }
     }
 }
 
