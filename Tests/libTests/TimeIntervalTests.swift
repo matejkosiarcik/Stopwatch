@@ -4,12 +4,11 @@
 //
 
 @testable import lib
-import Nimble
 import XCTest
 
-final class TimeIntervalTest: XCTestCase {}
+final class TimeIntervalTests: XCTestCase {}
 
-extension TimeIntervalTest {
+extension TimeIntervalTests {
     func testFormatting() {
         // given
         let intervals = [0, 1.345_039_28, 345.999_9, 4_573.68]
@@ -24,6 +23,6 @@ extension TimeIntervalTest {
         let formatted = intervals.map { $0.formatted }
 
         // then
-        expect(formatted) == expected
+        XCTAssertEqual(formatted, expected)
     }
 }

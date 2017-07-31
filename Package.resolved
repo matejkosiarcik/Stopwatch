@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "package": "CommandLine",
+        "repositoryURL": "https://github.com/rxwei/CommandLine.git",
         "state": {
           "branch": null,
-          "revision": "39b67002306fda9de4c9fd1290a6295f97edd09e",
-          "version": "7.0.1"
+          "revision": "5f915a906bd49024d970b4da6c839c456ac5e5ca",
+          "version": "3.0.2"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "c8446185238659a2b27c0261f64ff1254291d07d",
+          "version": "3.2.3"
         }
       }
     ]

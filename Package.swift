@@ -5,7 +5,8 @@ import PackageDescription
 let package = Package(name: "StopWatch")
 
 package.dependencies = [
-    .package(url: "https://github.com/Quick/Nimble.git", from: "7.0.0"),
+    .package(url: "https://github.com/rxwei/CommandLine.git", from: "3.0.0"),
+    .package(url: "https://github.com/antitypical/Result.git", from: "3.0.0"),
 ]
 
 package.products = [
@@ -15,13 +16,14 @@ package.products = [
 
 package.targets = [
     // executable
-    .target(name: "main", dependencies: ["cli"]),
+    .target(name: "main", dependencies: ["cli", "Result"]),
 
     // cli interface for testing
-    .target(name: "cli", dependencies: ["lib"]),
-    .testTarget(name: "cliTests", dependencies: ["cli", "Nimble"]),
+    // This target exists because main/executable targets are not testable
+    .target(name: "cli", dependencies: ["lib", "CommandLine", "Result"]),
+    .testTarget(name: "cliTests", dependencies: ["cli"]),
 
     // library
     .target(name: "lib", dependencies: []),
-    .testTarget(name: "libTests", dependencies: ["lib", "Nimble"]),
+    .testTarget(name: "libTests", dependencies: ["lib"]),
 ]

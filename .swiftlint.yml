@@ -1,10 +1,13 @@
 ---
 # excluded folders
 excluded:
-    - Carthage
-    - Pods
-    - Packages
     - .build
+    - .git
+    - build
+    - Carthage
+    - fastlane
+    - Packages
+    - Pods
 
 # rule on/off switching
 disabled_rules:

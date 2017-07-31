@@ -4,13 +4,13 @@
 //
 
 @testable import lib
-import Nimble
 import XCTest
 
-final class TimerStatusTest: XCTestCase {}
+final class TimerStatusTests: XCTestCase {}
 
-extension TimerStatusTest {
-    func testEquatability() {
+// MARK: - Equality
+extension TimerStatusTests {
+    func testEquality() {
         // given
         let date = Date()
         let reference: [lib.Timer.Status] = [.stopped, .running(date)]
@@ -21,6 +21,6 @@ extension TimerStatusTest {
         let tested = reference.flatMap { ref in testers.flatMap { ref == $0 } }
 
         // then
-        expect(tested) == expected
+        XCTAssertEqual(tested, expected)
     }
 }

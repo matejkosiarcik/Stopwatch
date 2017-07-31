@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# codegen
+# Copyright © 2017 Matej Kosiarcik. All rights reserved.
+# This file generates sources
+#
+
+# setup
+set -euf
+cd "$(dirname "${0}")/.."
+. "./Tools/helpers.sh"
+
+# Sourcery
+if check sourcery; then
+    target="Tests/LinuxMain.swift"
+    sourcery --sources Tests/ --templates Templates/Sourcery.LinuxMain.swift.stencil \
+        --args testimports='@testable import cliTests
+@testable import libTests' --output "${target}" >/dev/null
+    strip "${target}"
+fi
