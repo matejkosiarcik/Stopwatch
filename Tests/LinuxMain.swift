@@ -75,6 +75,7 @@ extension TimerTests {
         ("testMultipleStarts", testMultipleStarts),
         ("testStopping", testStopping),
         ("testMultipleStops", testMultipleStops),
+        ("testToggling", testToggling),
         ("testStationaryLaps", testStationaryLaps),
         ("testTrivialLapping", testTrivialLapping),
         ("testComplicatedLapping", testComplicatedLapping),
