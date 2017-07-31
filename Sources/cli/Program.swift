@@ -46,11 +46,11 @@ extension Program {
         reportLoop()
 
         timer.start()
-        loop: while true {
+        while true {
             guard let input = readCharacter(from: .standardInput) else { continue }
-            if input == .esc { break loop }
-            else if input == Character(" ") { timer.status == .stopped ? timer.start() : timer.stop() }
-            else if input == Character("\r") || input == Character("\n") { timer.lap() }
+            if input.isStop { break }
+            else if input.isPause { timer.status == .stopped ? timer.start() : timer.stop() }
+            else if input.isLap { timer.lap() }
             self.update(laps: timer.laps)
         }
         timer.lap()
@@ -94,5 +94,7 @@ private extension Program {
 
 // swiftlint:disable:next no_extension_access_modifier
 private extension Character {
-    static let esc = Character("\u{1B}")
+    var isPause: Bool { return self == Character(" ") }
+    var isLap: Bool { return self == Character("\r") || self == Character("\n") }
+    var isStop: Bool { return self == Character("\u{1B}") } // esc
 }
