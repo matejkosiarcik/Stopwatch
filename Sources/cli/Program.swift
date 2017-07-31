@@ -37,13 +37,13 @@ extension Program {
     }
 
     private func runStopWatch() {
-        let usage = """
+        print("""
             Controls:
-             - <Enter> to add new lap
-             - <Space> to pause/continue
-             - <Esc> to quit
-            """
-        print(usage)
+             <Enter> - add new lap
+             <Space> - pause/continue
+             <Esc>   - quit
+            """) // show usage to user
+        print()
 
         var timer = lib.Timer()
 
