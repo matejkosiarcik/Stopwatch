@@ -70,3 +70,8 @@ text_files() {
         printf "%s\n" "${file}"
     done
 }
+
+# lists shell files
+shell_files() {
+    find "./Tools" -type f -not -name "*.*" -or -name "*.sh"
+}
