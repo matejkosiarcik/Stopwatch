@@ -11,7 +11,7 @@ cd "$(dirname "${0}")/.."
 . "./Tools/helpers.sh"
 
 # Run classic build
-if [ "${#}" -eq "0" ]; then ./Tools/build; else ./Tools/build "${@}"; fi
+if [ "${#}" -eq "0" ]; then "./Tools/build"; else "./Tools/build" "${@}"; fi
 
 # Swift
 if check swift; then
