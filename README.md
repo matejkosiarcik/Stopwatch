@@ -1,6 +1,6 @@
-# StopWatch
+# Stopwatch
 
-StopWatch is simple CLI (Command line interface) app.
+Stopwatch is simple CLI (Command line interface) app.
 
 ## Compatibility
 
