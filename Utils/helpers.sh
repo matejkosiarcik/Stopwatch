@@ -1,7 +1,6 @@
 #
-# helpers.sh
-# Copyright © 2017 Matej Kosiarcik. All rights reserved.
-# This file contains helper functions for other shell scripts
+# This file is part of Stopwatch which is released under MIT license.
+# See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 #
 
 # Specifies to ShellCheck what shell it should use for linting
