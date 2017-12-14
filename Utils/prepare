@@ -15,5 +15,4 @@ cd "$(dirname "${0}")/.."
 # lint should run last, because we want to report only issues that could not be fixed in format and also issues with generated code
 "./Utils/format"
 "./Utils/codegen"
-"./Utils/docgen"
 "./Utils/lint"
