@@ -3,8 +3,8 @@
 // See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 //
 
-@testable import Core
 import CommandLineKit
+@testable import Core
 import XCTest
 
 final class CommandLineKitTests: XCTestCase {}

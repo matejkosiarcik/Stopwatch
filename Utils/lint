@@ -32,8 +32,8 @@ if check shellcheck; then
 fi
 if check shfmt; then
     shell_files | while IFS= read -r file; do
-        shfmt -i 4 -p -l "${file}" \
-            | sed -E "s~(.*)~\1: warning: file badly formatted, run 'format' script to resolve (bad_format)~"
+        shfmt -i 4 -p -l "${file}" |
+            sed -E "s~(.*)~\1: warning: file badly formatted, run 'format' script to resolve (bad_format)~"
     done
 fi
 # Invoke various shells with scripts for alternative linting via dry runs

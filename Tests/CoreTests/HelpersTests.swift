@@ -16,7 +16,10 @@ extension HelpersTests {
         let expected = Character("a")
 
         // when
-        guard let reader = FileHandle(forReadingAtPath: filePath) else { XCTFail(); return }
+        guard let reader = FileHandle(forReadingAtPath: filePath) else {
+            XCTFail("Could not open file at: \(filePath)")
+            return
+        }
         let char = readCharacter(from: reader)
 
         // then
