@@ -19,9 +19,9 @@ package.products = [
 
 package.targets = [
     // executable
-    .target(name: "main", dependencies: ["lib", "Result"]),
+    .target(name: "main", dependencies: ["Core", "Result"]),
 
     // library
-    .target(name: "lib", dependencies: ["CommandLine", "Result"]),
-    .testTarget(name: "libTests", dependencies: ["lib"]),
+    .target(name: "Core", dependencies: ["CommandLine", "Result"]),
+    .testTarget(name: "CoreTests", dependencies: ["Core"]),
 ]

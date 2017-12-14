@@ -3,7 +3,7 @@
 // Copyright © 2017 Matej Kosiarcik. All rights reserved.
 //
 
-@testable import lib
+@testable import Core
 import XCTest
 
 final class TimeIntervalTests: XCTestCase {}

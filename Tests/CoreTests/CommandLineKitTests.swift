@@ -3,7 +3,7 @@
 // See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 //
 
-@testable import cli
+@testable import Core
 import CommandLineKit
 import XCTest
 
