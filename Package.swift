@@ -1,9 +1,4 @@
 // swift-tools-version:4.0
-//
-// This file is part of Stopwatch which is released under MIT license.
-// See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
-//
-
 import PackageDescription
 
 let package = Package(name: "Stopwatch")
