@@ -7,7 +7,7 @@
 import XCTest
 
 final class TimerTests: XCTestCase {
-    private let accuracy = 0.013
+    private let accuracy = 0.1
 }
 
 // MARK: - Creation
@@ -72,10 +72,7 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testMultipleStops() {
@@ -91,10 +88,7 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testToggling() {
@@ -119,10 +113,7 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.1, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 }
 
@@ -152,10 +143,7 @@ extension TimerTests {
         XCTAssertEqual(timer.laps[2].relative, 0, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[2].absolute, timer.laps[1].absolute)
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testTrivialLapping() {
@@ -223,9 +211,6 @@ extension TimerTests {
         XCTAssertEqual(timer.laps[3].absolute, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[3].relative, 0, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[3].absolute, timer.laps[2].absolute)
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 }
