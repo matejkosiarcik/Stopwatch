@@ -15,19 +15,13 @@ package.dependencies = [
 
 package.products = [
    .executable(name: "swatch", targets: ["main"]),
-   .library(name: "Stopwatch", targets: ["lib"]),
 ]
 
 package.targets = [
     // executable
-    .target(name: "main", dependencies: ["cli", "Result"]),
-
-    // cli interface for testing
-    // This target exists because main/executable targets are not testable
-    .target(name: "cli", dependencies: ["lib", "CommandLine", "Result"]),
-    .testTarget(name: "cliTests", dependencies: ["cli"]),
+    .target(name: "main", dependencies: ["lib", "Result"]),
 
     // library
-    .target(name: "lib", dependencies: []),
+    .target(name: "lib", dependencies: ["CommandLine", "Result"]),
     .testTarget(name: "libTests", dependencies: ["lib"]),
 ]

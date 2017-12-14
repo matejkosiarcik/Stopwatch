@@ -14,7 +14,7 @@ final class TimerTests: XCTestCase {
 extension TimerTests {
     func testInitialization() {
         // when
-        let timer = lib.Timer()
+        let timer = Timer()
 
         // then
         XCTAssertEqual(timer.current, 0)
@@ -27,7 +27,7 @@ extension TimerTests {
 extension TimerTests {
     func testStarting() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -44,7 +44,7 @@ extension TimerTests {
 
     func testMultipleStarts() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -62,7 +62,7 @@ extension TimerTests {
 
     func testStopping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -77,7 +77,7 @@ extension TimerTests {
 
     func testMultipleStops() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -93,7 +93,7 @@ extension TimerTests {
 
     func testToggling() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.toggle()
@@ -121,7 +121,7 @@ extension TimerTests {
 extension TimerTests {
     func testStationaryLaps() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -148,7 +148,7 @@ extension TimerTests {
 
     func testTrivialLapping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -173,7 +173,7 @@ extension TimerTests {
 
     func testComplicatedLapping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
