@@ -7,6 +7,7 @@
 //
 
 @testable import CoreTests
+import XCTest
 
 extension ArgumentsTests {
     static var allTests = [
