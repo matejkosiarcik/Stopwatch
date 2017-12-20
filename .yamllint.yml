@@ -5,11 +5,6 @@ extends: default
 ignore: |
     .build/
     .git/
-    build/
-    Carthage/
-    fastlane/
-    Packages/
-    Pods/
 
 # Rule customization
 rules:

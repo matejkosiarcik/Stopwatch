@@ -3,11 +3,6 @@
 excluded:
     - .build
     - .git
-    - build
-    - Carthage
-    - fastlane
-    - Packages
-    - Pods
 
 # rule on/off switching
 disabled_rules:
