@@ -10,9 +10,7 @@ cd "$(dirname "${0}")/.."
 . "./Utils/helpers.sh"
 
 # Sourcery
-if check sourcery; then
-    target="Tests/LinuxMain.swift"
-    sourcery --sources Tests/ --templates Templates/Sourcery.LinuxMain.swift.stencil \
-        --args testimports='@testable import CoreTests' --output "${target}" >/dev/null
-    strip "${target}"
-fi
+target="Tests/LinuxMain.swift"
+sourcery --sources 'Tests/' --templates 'Templates/LinuxMain.swift.stencil' \
+    --args testimports='@testable import CoreTests' --output "${target}" >'/dev/null'
+printf '%s\n' "$(cat -s "${target}")" >"${target}"
