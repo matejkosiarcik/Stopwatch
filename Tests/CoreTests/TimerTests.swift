@@ -1,20 +1,20 @@
 //
-// TimerTests.swift
-// Copyright © 2017 Matej Kosiarcik. All rights reserved.
+// This file is part of Stopwatch which is released under MIT license.
+// See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 //
 
-@testable import lib
+@testable import Core
 import XCTest
 
 final class TimerTests: XCTestCase {
-    private let accuracy = 0.013
+    private let accuracy = 0.1
 }
 
 // MARK: - Creation
 extension TimerTests {
     func testInitialization() {
         // when
-        let timer = lib.Timer()
+        let timer = Timer()
 
         // then
         XCTAssertEqual(timer.current, 0)
@@ -27,7 +27,7 @@ extension TimerTests {
 extension TimerTests {
     func testStarting() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -44,7 +44,7 @@ extension TimerTests {
 
     func testMultipleStarts() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -62,7 +62,7 @@ extension TimerTests {
 
     func testStopping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -72,15 +72,12 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testMultipleStops() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -91,15 +88,12 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testToggling() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.toggle()
@@ -119,10 +113,7 @@ extension TimerTests {
         // then
         XCTAssertEqual(timer.current, 0.1, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps, [])
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 }
 
@@ -130,7 +121,7 @@ extension TimerTests {
 extension TimerTests {
     func testStationaryLaps() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -152,15 +143,12 @@ extension TimerTests {
         XCTAssertEqual(timer.laps[2].relative, 0, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[2].absolute, timer.laps[1].absolute)
         XCTAssertEqual(timer.current, 0.2, accuracy: self.accuracy)
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 
     func testTrivialLapping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -185,7 +173,7 @@ extension TimerTests {
 
     func testComplicatedLapping() {
         // given
-        var timer = lib.Timer()
+        var timer = Timer()
 
         // when
         timer.start()
@@ -223,9 +211,6 @@ extension TimerTests {
         XCTAssertEqual(timer.laps[3].absolute, 0.2, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[3].relative, 0, accuracy: self.accuracy)
         XCTAssertEqual(timer.laps[3].absolute, timer.laps[2].absolute)
-        switch timer.status {
-        case .stopped: break
-        default: XCTFail("Timer should be stopped")
-        }
+        XCTAssertTrue(timer.status == .stopped)
     }
 }

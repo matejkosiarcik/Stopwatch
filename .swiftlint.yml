@@ -1,23 +1,13 @@
-#
-# This file is part of Stopwatch which is released under MIT license.
-# See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
-#
-
 ---
 # exclude paths
 excluded:
     - .build
     - .git
-    - build
-    - Carthage
-    - fastlane
-    - Packages
-    - Pods
 
 # rule on/off switching
 disabled_rules:
-    - todo
     - statement_position
+    - todo
 opt_in_rules:
     - attributes
     - closure_end_indentation
@@ -29,7 +19,6 @@ opt_in_rules:
     - force_unwrapping
     - implicit_return
     - implicitly_unwrapped_optional
-    - missing_docs
     - nimble_operator
     - no_extension_access_modifier
     - number_separator

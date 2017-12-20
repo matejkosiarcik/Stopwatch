@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import lib
 import Result
 
 public struct Program {
@@ -46,7 +45,7 @@ extension Program {
             """) // show usage to user
         print()
 
-        var timer = lib.Timer()
+        var timer = Timer()
 
         func reportLoop() {
             flushPrint(timer.current.formatted, to: stdout)
@@ -80,7 +79,7 @@ extension Program {
     private func version() -> String {
         return """
             StopWatch - CLI stopwatch application
-            version: 0.1.0
+            version: 0.2.1
             """
     }
 }
@@ -99,7 +98,7 @@ extension Program {
 
 // swiftlint:disable:next no_extension_access_modifier
 private extension Program {
-    func update(laps: [lib.Timer.Lap]) {
+    func update(laps: [Timer.Lap]) {
         _ = shell("clear")
         let laps = laps.formatted
         if laps != "" { print(laps) }

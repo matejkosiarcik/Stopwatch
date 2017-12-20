@@ -3,7 +3,7 @@
 // See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 //
 
-@testable import cli
+@testable import Core
 import XCTest
 
 final class HelpersTests: XCTestCase {}
@@ -16,7 +16,10 @@ extension HelpersTests {
         let expected = Character("a")
 
         // when
-        guard let reader = FileHandle(forReadingAtPath: filePath) else { XCTFail(); return }
+        guard let reader = FileHandle(forReadingAtPath: filePath) else {
+            XCTFail("Could not open file at: \(filePath)")
+            return
+        }
         let char = readCharacter(from: reader)
 
         // then
