@@ -30,19 +30,3 @@ extension ProgramTests {
         }
     }
 }
-
-// MARK: - Running
-extension ProgramTests {
-    func testHelpOutput() {
-        // given
-        let program = Program(arguments: Arguments(help: true, usage: "foo"))
-        var output = ""
-
-        // when
-        let exitCode = program.main(output: &output)
-
-        // then
-        XCTAssertEqual(exitCode, 0)
-        XCTAssertTrue(output.lowercased().contains("foo"))
-    }
-}

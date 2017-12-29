@@ -7,7 +7,7 @@ import Core
 import Foundation
 
 var helperOutput = ""
-let result = Program.new(for: CommandLine.arguments).map { $0.main(output: &helperOutput) }
+let result = Program.new(for: CommandLine.arguments).map { $0.main() }
 helperOutput = helperOutput.trimmingCharacters(in: .whitespacesAndNewlines)
 switch result {
 case .success(let exitCode):

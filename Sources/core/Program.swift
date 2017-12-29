@@ -22,9 +22,9 @@ extension Program {
 }
 
 extension Program {
-    public func main(output: inout String) -> ExitCode {
+    public func main() -> ExitCode {
         if self.arguments.help {
-            print(self.help(), to: &output)
+            print(self.help())
         } else {
             // TODO: change type(of: ) to Self, after SE-0068 is implemented
             type(of: self).setUp()
