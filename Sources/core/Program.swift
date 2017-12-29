@@ -36,7 +36,6 @@ extension Program {
     }
 
     private func runStopWatch() {
-        _ = shell("clear")
         print("""
             Controls:
              <Enter> - add new lap
@@ -62,13 +61,18 @@ extension Program {
             guard let input = readCharacter(from: .standardInput) else { continue }
             if input.isStop { break }
             else if input.isPause { timer.toggle() }
-            else if input.isLap { timer.lap() }
-            self.update(laps: timer.laps)
+            else if input.isLap { lap(stdout) }
         }
-        timer.lap()
         timer.stop()
-        self.update(laps: timer.laps)
+        lap(stdout)
     }
+}
+
+func lap(_ file: UnsafeMutablePointer<FILE>) {
+    let line = "\n"
+    let chars = line.data(using: .utf8).map { $0.map { Int32($0) } } ?? []
+    chars.forEach { fputc($0, file) }
+    fflush(file)
 }
 
 extension Program {
@@ -90,18 +94,10 @@ extension Program {
         setbuf(stdin, nil)
         setvbuf(stdin, nil, _IONBF, 0)
         var input = termios()
-        tcgetattr(STDIN_FILENO, &input)
+        tcgetattr(fileno(stdin), &input)
         input.c_lflag = tcflag_t(Int32(input.c_lflag) & ~ICANON)
-        tcsetattr(STDIN_FILENO, TCSANOW, &input)
-    }
-}
-
-// swiftlint:disable:next no_extension_access_modifier
-private extension Program {
-    func update(laps: [Timer.Lap]) {
-        _ = shell("clear")
-        let laps = laps.formatted
-        if laps != "" { print(laps) }
+        input.c_lflag = tcflag_t(Int32(input.c_lflag) & ~ECHO)
+        tcsetattr(fileno(stdin), TCSANOW, &input)
     }
 }
 

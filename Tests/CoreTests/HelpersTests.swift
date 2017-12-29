@@ -26,18 +26,6 @@ extension HelpersTests {
         XCTAssertEqual(char, expected)
     }
 
-    func testShellExitCode() {
-        // given
-        let command = "exit 42"
-        let expected: Int32 = 42
-
-        // when
-        let exitCode = shell(command)
-
-        // then
-        XCTAssertEqual(exitCode, expected)
-    }
-
     func testImmediatePrinting() {
         // given
         let str = "foo"
@@ -53,6 +41,6 @@ extension HelpersTests {
 
         // then
         let content = try? String(contentsOf: tempURL)
-        XCTAssertEqual(content, "foo\r")
+        XCTAssertEqual(content, "\rfoo")
     }
 }
