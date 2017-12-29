@@ -37,7 +37,7 @@ extension HelpersTests {
             else { XCTFail("Temporary file not opened"); return }
 
         // when
-        flushPrint(str, to: tempFile)
+        report(str, to: tempFile)
 
         // then
         let content = try? String(contentsOf: tempURL)

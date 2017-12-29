@@ -25,8 +25,6 @@ extension Program {
     public func main(output: inout String) -> ExitCode {
         if self.arguments.help {
             print(self.help(), to: &output)
-        } else if self.arguments.version {
-            print(self.version(), to: &output)
         } else {
             // TODO: change type(of: ) to Self, after SE-0068 is implemented
             type(of: self).setUp()
@@ -47,7 +45,7 @@ extension Program {
         var timer = Timer()
 
         func reportLoop() {
-            flushPrint(timer.current.formatted, to: stdout)
+            report(timer.current.formatted, to: stdout)
             if #available(macOS 10.10, *) {
                 DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.005) { reportLoop() }
             } else {
@@ -61,16 +59,25 @@ extension Program {
             guard let input = readCharacter(from: .standardInput) else { continue }
             if input.isStop { break }
             else if input.isPause { timer.toggle() }
-            else if input.isLap { lap(stdout) }
+            else if input.isLap { lap(to: stdout) }
         }
         timer.stop()
-        lap(stdout)
+        lap(to: stdout)
     }
 }
 
-func lap(_ file: UnsafeMutablePointer<FILE>) {
-    let line = "\n"
-    let chars = line.data(using: .utf8).map { $0.map { Int32($0) } } ?? []
+// prints message and immediatelly flushes buffer for given file
+// forces terminal to print message; because when buffered it can wait till \n is printed
+func report(_ string: String, to file: UnsafeMutablePointer<FILE>) {
+    print("\r" + string, to: file)
+}
+
+func lap(to file: UnsafeMutablePointer<FILE>) {
+    print("\n", to: file)
+}
+
+private func print(_ string: String, to file: UnsafeMutablePointer<FILE>) {
+    let chars = string.data(using: .utf8).map { $0.map { Int32($0) } } ?? []
     chars.forEach { fputc($0, file) }
     fflush(file)
 }
@@ -78,13 +85,6 @@ func lap(_ file: UnsafeMutablePointer<FILE>) {
 extension Program {
     private func help() -> String {
         return self.arguments.usage
-    }
-
-    private func version() -> String {
-        return """
-            StopWatch - CLI stopwatch application
-            version: 0.2.1
-            """
     }
 }
 
