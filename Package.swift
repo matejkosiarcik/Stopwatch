@@ -1,9 +1,4 @@
 // swift-tools-version:4.0
-//
-// This file is part of Stopwatch which is released under MIT license.
-// See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
-//
-
 import PackageDescription
 
 let package = Package(name: "Stopwatch")
@@ -14,20 +9,14 @@ package.dependencies = [
 ]
 
 package.products = [
-   .executable(name: "swatch", targets: ["main"]),
-   .library(name: "Stopwatch", targets: ["lib"]),
+    .executable(name: "swatch", targets: ["main"]),
 ]
 
 package.targets = [
     // executable
-    .target(name: "main", dependencies: ["cli", "Result"]),
-
-    // cli interface for testing
-    // This target exists because main/executable targets are not testable
-    .target(name: "cli", dependencies: ["lib", "CommandLine", "Result"]),
-    .testTarget(name: "cliTests", dependencies: ["cli"]),
+    .target(name: "main", dependencies: ["Core", "Result"]),
 
     // library
-    .target(name: "lib", dependencies: []),
-    .testTarget(name: "libTests", dependencies: ["lib"]),
+    .target(name: "Core", dependencies: ["CommandLine", "Result"]),
+    .testTarget(name: "CoreTests", dependencies: ["Core"]),
 ]

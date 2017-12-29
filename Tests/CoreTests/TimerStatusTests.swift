@@ -1,9 +1,9 @@
 //
-// TimerStatusTests.swift
-// Copyright © 2017 Matej Kosiarcik. All rights reserved.
+// This file is part of Stopwatch which is released under MIT license.
+// See file LICENSE.txt or go to https://github.com/matejkosiarcik/Stopwatch for full license details.
 //
 
-@testable import lib
+@testable import Core
 import XCTest
 
 final class TimerStatusTests: XCTestCase {}
@@ -13,8 +13,8 @@ extension TimerStatusTests {
     func testEquality() {
         // given
         let date = Date()
-        let reference: [lib.Timer.Status] = [.stopped, .running(date)]
-        let testers: [lib.Timer.Status] = [.stopped, .running(date), .running(Date())]
+        let reference: [Core.Timer.State] = [.stopped, .running(date)]
+        let testers: [Core.Timer.State] = [.stopped, .running(date), .running(Date())]
         let expected = [[true, false, false], [false, true, false]].flatMap { $0 }
 
         // when
