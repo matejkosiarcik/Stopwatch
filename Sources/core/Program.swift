@@ -28,12 +28,12 @@ extension Program {
         } else {
             // TODO: change type(of: ) to Self, after SE-0068 is implemented
             type(of: self).setUp()
-            self.runStopWatch()
+            self.run()
         }
         return 0
     }
 
-    private func runStopWatch() {
+    private func run() {
         var timer = Timer()
 
         func reportLoop() {
