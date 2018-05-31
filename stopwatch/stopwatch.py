@@ -105,7 +105,12 @@ def main(argv=None):
     timer.start()
 
     while True:
-        command = sys.stdin.read(1).lower()
+        try:
+            command = sys.stdin.read(1).lower()
+        except (KeyboardInterrupt, SystemExit):
+            if timer.is_running:
+                timer.stop()
+            break
         if command == "q" or command == chr(27):
             if timer.is_running:
                 timer.stop()
