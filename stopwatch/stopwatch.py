@@ -69,15 +69,18 @@ def main(argv = None):
     if argv is None:
         argv = sys.argv
 
+    controls_help = "\n".join([
+        "controls:",
+        "  <Enter>      - new lap",
+        "  <Space>      - pause/continue",
+        "  <ESC> or <Q> - quit",
+        ])
+
     # parse arguments
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(epilog=controls_help, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.parse_args(argv[1:])
 
     # print usage
-    print("Controls:\n"
-          "  <Enter>      - new lap\n"
-          "  <Space>      - pause/continue\n"
-          "  <ESC> or <Q> - quit\n")
     print("        split-time     total-time")
     print("       ------------   ------------")
 
