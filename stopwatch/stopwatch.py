@@ -1,4 +1,6 @@
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (
+    absolute_import, division, print_function, unicode_literals
+)
 import argparse
 import datetime
 import sys
@@ -62,7 +64,7 @@ class Timer:
             time.sleep(0.001)
 
 
-def main(argv = None):
+def main(argv=None):
     """Main script function"""
 
     # get arguments when not available
@@ -74,10 +76,12 @@ def main(argv = None):
         "  <Enter>      - new lap",
         "  <Space>      - pause/continue",
         "  <ESC> or <Q> - quit",
-        ])
+    ])
 
     # parse arguments
-    parser = argparse.ArgumentParser(epilog=controls_help, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        epilog=controls_help,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.parse_args(argv[1:])
 
     # print usage
