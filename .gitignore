@@ -1,113 +1,103 @@
-### SwiftPM generated ###
-/*.xcodeproj
-.build/
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-### Swift ###
-# Build generated
-DerivedData/
+# C extensions
+*.so
 
-# Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
+# PyInstaller
+*.manifest
+*.spec
 
-# Obj-C/Swift specific
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
 
-# Swift Package Manager
-Packages/
-.build/
+# Translations
+*.mo
+*.pot
 
-# CocoaPods
-Pods/
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
 
-# Carthage
-Carthage/
+# Flask stuff:
+instance/
+.webassets-cache
 
-# fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+# Scrapy stuff:
+.scrapy
 
-### macOS ###
-# General
-*.DS_Store
-.AppleDouble
-.LSOverride
+# Sphinx documentation
+docs/_build/
 
-# Thumbnails
-._*
+# PyBuilder
+target/
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# pyenv
+.python-version
 
-### Linux ###
-*~
+# celery beat schedule file
+celerybeat-schedule
 
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
+# SageMath parsed files
+*.sage.py
 
-# KDE directory preferences
-.directory
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
+# Spyder project settings
+.spyderproject
+.spyproject
 
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
+# Rope project settings
+.ropeproject
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
+# mkdocs documentation
+/site
 
-# Dump file
-*.stackdump
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
+# mypy
+.mypy_cache/
