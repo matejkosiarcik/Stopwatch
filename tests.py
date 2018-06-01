@@ -29,8 +29,8 @@ class TimerTests(unittest.TestCase):
         data = timer_execute(operations)
 
         self.assertEqual(data['lap'], 1)
-        self.assertAlmostEqual(data['time_relative'], 0.1, delta=0.05)
-        self.assertAlmostEqual(data['time_absolute'], 0.1, delta=0.05)
+        self.assertAlmostEqual(data['time_relative'], 0.1, delta=0.08)
+        self.assertAlmostEqual(data['time_absolute'], 0.1, delta=0.08)
 
     def test_timer_pausing(self):
         def operations(timer):
@@ -45,8 +45,8 @@ class TimerTests(unittest.TestCase):
         data = timer_execute(operations)
 
         self.assertEqual(data['lap'], 1)
-        self.assertAlmostEqual(data['time_relative'], 0.2, delta=0.05)
-        self.assertAlmostEqual(data['time_absolute'], 0.2, delta=0.05)
+        self.assertAlmostEqual(data['time_relative'], 0.2, delta=0.08)
+        self.assertAlmostEqual(data['time_absolute'], 0.2, delta=0.08)
 
     def test_timer_lapping_simple(self):
         def operations(timer):
@@ -57,8 +57,8 @@ class TimerTests(unittest.TestCase):
         data = timer_execute(operations)
 
         self.assertEqual(data['lap'], 2)
-        self.assertAlmostEqual(data['time_relative'], 0, delta=0.005)
-        self.assertAlmostEqual(data['time_absolute'], 0, delta=0.005)
+        self.assertAlmostEqual(data['time_relative'], 0, delta=0.003)
+        self.assertAlmostEqual(data['time_absolute'], 0, delta=0.003)
 
     def test_timer_lapping_complex(self):
         def operations(timer):
@@ -73,8 +73,8 @@ class TimerTests(unittest.TestCase):
         data = timer_execute(operations)
 
         self.assertEqual(data['lap'], 2)
-        self.assertAlmostEqual(data['time_relative'], 0.1, delta=0.05)
-        self.assertAlmostEqual(data['time_absolute'], 0.2, delta=0.05)
+        self.assertAlmostEqual(data['time_relative'], 0.1, delta=0.08)
+        self.assertAlmostEqual(data['time_absolute'], 0.2, delta=0.08)
 
 
 def timer_execute(operations):
