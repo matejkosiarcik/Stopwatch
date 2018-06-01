@@ -23,7 +23,7 @@ dist:
   - trusty
   - xenial
 sudo:
-  - true
+  - required
   - false
 
 matrix:
