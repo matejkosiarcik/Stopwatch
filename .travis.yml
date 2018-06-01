@@ -45,7 +45,8 @@ before_install:
         brew update >/dev/null
         case "${TOXENV}" in
             'python@2')
-                pip install pytest
+                brew install python2
+                pip2 install pytest
                 ;;
             'python@3')
                 brew upgrade python
