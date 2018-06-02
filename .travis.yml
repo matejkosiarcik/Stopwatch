@@ -34,10 +34,8 @@ matrix:
   include:
       - os: osx
         language: generic
-        env: TOXENV=python@2
-      - os: osx
-        language: generic
-        env: TOXENV=python@3
+        - env: TOXENV=python@2
+        - env: TOXENV=python@3
 
 before_install:
   - |
