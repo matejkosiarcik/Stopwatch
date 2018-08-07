@@ -8,17 +8,38 @@ import unittest
 from stopwatch import stopwatch
 
 
+def total_seconds(delta):
+    return sum([
+        delta.days * 24 * 60 * 60,
+        delta.seconds,
+        delta.microseconds / 1000000,
+    ])
+
+
 class MainTests(unittest.TestCase):
     def test_delta_description(self):
         data = [
             (datetime.timedelta(), "00:00:00.000"),
             (datetime.timedelta(0, 1, 123456), "00:00:01.123"),
-            (datetime.timedelta(0, 5000, 123456), "01:23:20.123"),
-            (datetime.timedelta(1, 3700, 123456), "25:01:40.123"),
+            (datetime.timedelta(0, 5000, 234567), "01:23:20.234"),
+            (datetime.timedelta(1, 3700, 345678), "25:01:40.345"),
         ]
 
         for entry in data:
             self.assertEqual(stopwatch.delta_formatted(entry[0]), entry[1])
+
+
+class TestHelpersTests(unittest.TestCase):
+    def test_total_seconds(self):
+        data = [
+            (datetime.timedelta(), 0),
+            (datetime.timedelta(0, 1, 123456), 1.123456),
+            (datetime.timedelta(0, 5000, 234567), 5000.234567),
+            (datetime.timedelta(1, 3700, 345678), 90100.345678),
+        ]
+
+        for entry in data:
+            self.assertEqual(total_seconds(entry[0]), entry[1])
 
 
 class TimerTests(unittest.TestCase):
@@ -96,12 +117,6 @@ def timer_execute(operations):
     }
 
     def update(lap, delta_relative, delta_absolute):
-        def total_seconds(delta):
-            return sum([
-                delta.days * 24 * 60 * 60,
-                delta.seconds,
-                delta.microseconds / 1000000,
-            ])
         data['called'] = True
         data['lap'] = lap
         data['time_relative'] = total_seconds(delta_relative)
