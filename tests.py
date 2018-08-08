@@ -95,8 +95,8 @@ class TimerTests(unittest.TestCase):
         # then
         self.assertTrue(tester.was_updated)
         self.assertEqual(tester.lap_count, 1)
-        self.assertAlmostEqual(tester.last_lap_time, actual_delay, delta=0.01)
-        self.assertAlmostEqual(tester.total_time, actual_delay, delta=0.01)
+        self.assertAlmostEqual(tester.last_lap_time, actual_delay, delta=0.05)
+        self.assertAlmostEqual(tester.total_time, actual_delay, delta=0.05)
 
     def test_timer_pausing(self):
         # given
@@ -115,8 +115,8 @@ class TimerTests(unittest.TestCase):
         # then
         self.assertTrue(tester.was_updated)
         self.assertEqual(tester.lap_count, 1)
-        self.assertAlmostEqual(tester.last_lap_time, actual_delay, delta=0.01)
-        self.assertAlmostEqual(tester.total_time, actual_delay, delta=0.01)
+        self.assertAlmostEqual(tester.last_lap_time, actual_delay, delta=0.05)
+        self.assertAlmostEqual(tester.total_time, actual_delay, delta=0.05)
 
     def test_timer_lapping_simple(self):
         # given
@@ -129,8 +129,8 @@ class TimerTests(unittest.TestCase):
 
         # then
         self.assertEqual(tester.lap_count, 2)
-        self.assertAlmostEqual(tester.last_lap_time, 0, delta=0.01)
-        self.assertAlmostEqual(tester.total_time, 0, delta=0.01)
+        self.assertAlmostEqual(tester.last_lap_time, 0, delta=0.02)
+        self.assertAlmostEqual(tester.total_time, 0, delta=0.02)
 
     def test_timer_lapping_complex(self):
         # given
@@ -149,8 +149,8 @@ class TimerTests(unittest.TestCase):
         # then
         self.assertTrue(tester.was_updated)
         self.assertEqual(tester.lap_count, 2)
-        self.assertAlmostEqual(tester.last_lap_time, actual_delay[-1], delta=0.01)
-        self.assertAlmostEqual(tester.total_time, sum(actual_delay), delta=0.01)
+        self.assertAlmostEqual(tester.last_lap_time, actual_delay[-1], delta=0.05)
+        self.assertAlmostEqual(tester.total_time, sum(actual_delay), delta=0.05)
 
 
 if __name__ == '__main__':
