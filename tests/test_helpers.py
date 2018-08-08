@@ -6,12 +6,10 @@ import helpers
 
 class TestHelpersTests(helpers.TestCase):
     def test_sleep(self):
-        self.assertAlmostEqual(helpers.sleep(0.1), 0.1, delta=0.3)
-        self.assertAlmostEqual(helpers.sleep(0.2), 0.2, delta=0.3)
-        self.assertAlmostEqual(helpers.sleep(0.3), 0.3, delta=0.3)
-        self.assertAlmostEqual(helpers.sleep(0.4), 0.4, delta=0.3)
-        self.assertAlmostEqual(helpers.sleep(0.5), 0.5, delta=0.3)
-        self.assertAlmostEqual(helpers.sleep(0.6), 0.6, delta=0.3)
+        self.assertAlmostEqual(helpers.sleep(0.3), 0.3, delta=0.5)
+        self.assertAlmostEqual(helpers.sleep(0.4), 0.4, delta=0.5)
+        self.assertAlmostEqual(helpers.sleep(0.5), 0.5, delta=0.5)
+        self.assertAlmostEqual(helpers.sleep(0.6), 0.6, delta=0.5)
 
     def test_total_seconds(self):
         data = [
