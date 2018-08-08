@@ -8,21 +8,22 @@ import unittest
 from stopwatch import stopwatch
 
 
-# sleep for <amount> and return how long actually slept
-# because simple time.sleep() is unreliable in spent time, (specifically on CI)
-def sleep(amount):
-    before = datetime.datetime.now()
-    time.sleep(amount)
-    after = datetime.datetime.now()
-    return (after - before).total_seconds()
-
-
+# returns total seconds for given datatime.timedelta
 def total_seconds(delta):
     return sum([
         delta.days * 24 * 60 * 60,
         delta.seconds,
         delta.microseconds / 1000000,
     ])
+
+
+# sleep for <amount> and return how long actually slept
+# because simple time.sleep() is unreliable in spent time, (specifically on CI)
+def sleep(amount):
+    before = datetime.datetime.now()
+    time.sleep(amount)
+    after = datetime.datetime.now()
+    return total_seconds(after - before)
 
 
 class MainTests(unittest.TestCase):
