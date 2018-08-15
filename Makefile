@@ -12,3 +12,6 @@ test: FORCE
 	else \
 		exit 1; \
 	fi
+
+install: FORCE
+	pip install .
