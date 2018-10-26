@@ -69,17 +69,17 @@ matrix:
 before_install:
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-        brew update >/dev/null
-        case "${TOXENV}" in
-            'python@2')
-              brew install python2
-              pip2 install --upgrade pip
-            ;;
-            'python@3')
-              brew upgrade python
-              pip3 install --upgrade pip
-            ;;
-        esac
+      brew update >/dev/null
+      case "${TOXENV}" in
+          'python@2')
+            brew install python2
+            pip2 install --upgrade pip
+          ;;
+          'python@3')
+            brew upgrade python
+            pip3 install --upgrade pip
+          ;;
+      esac
     fi
 
 install:
