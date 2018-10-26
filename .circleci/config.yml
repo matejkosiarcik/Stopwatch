@@ -10,9 +10,5 @@ jobs:
           command: |
             python -m venv venv
             . venv/bin/activate
-      - run:
-          name: Install dependencies
-          command: make bootstrap
-      - run:
-          name: Test project
-          command: make test
+            make bootstrap
+            make test
