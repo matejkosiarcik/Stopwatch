@@ -1,4 +1,10 @@
 version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-python-3.6
+      - test-python-3.5
 jobs:
   test-python-3.6: &test-template
     docker:
