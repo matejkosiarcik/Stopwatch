@@ -7,6 +7,9 @@ FORCE:
 bootstrap: FORCE
 	pip install pytest
 
+update: FORCE
+	pip install --upgrade pytest
+
 test: FORCE
 	if command -v py.test >'/dev/null' 2>&1; then \
 		py.test tests; \
