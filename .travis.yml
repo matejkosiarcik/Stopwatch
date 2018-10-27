@@ -70,16 +70,21 @@ before_install:
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
       brew update >/dev/null
+      python --version || true
+      pip --version || true
       case "${TOXENV}" in
           'python@2')
             brew install python2
-            pip2 install --upgrade pip
+            brew unlink python
+            brew link python2
           ;;
           'python@3')
             brew upgrade python
-            pip install --upgrade pip
           ;;
       esac
+      python -m pip install install --upgrade pip
+      python --version
+      pip --version
     fi
 
 install:
