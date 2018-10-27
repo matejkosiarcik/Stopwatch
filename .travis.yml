@@ -33,38 +33,38 @@ matrix:
 
   include:
     # the default is important (should it change to newer version)
-    - {os: osx, language: generic, env: TOXENV=python@2}
-    - {os: osx, language: generic, env: TOXENV=python@3}
+    - {os: osx, language: generic, env: TOXENV=py2}
+    - {os: osx, language: generic, env: TOXENV=py3}
     # 10.13
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode10}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode10}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode10}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode10}
     # 10.13
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode9.4}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode9.4}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode9.4}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode9.4}
     # 10.13
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode9.3}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode9.3}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode9.3}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode9.3}
     # 10.12
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode9.2}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode9.2}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode9.2}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode9.2}
     # 10.12
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode9.1}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode9.1}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode9.1}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode9.1}
     # 10.12
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode9}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode9}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode9}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode9}
     # 10.12
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode8.3}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode8.3}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode8.3}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode8.3}
     # 10.11
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode8}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode8}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode8}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode8}
     # 10.11
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode7.3}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode7.3}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode7.3}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode7.3}
     # 10.10
-    - {os: osx, language: generic, env: TOXENV=python@2, osx_image: xcode6.4}
-    - {os: osx, language: generic, env: TOXENV=python@3, osx_image: xcode6.4}
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode6.4}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode6.4}
 
 before_install:
   - |
@@ -73,11 +73,11 @@ before_install:
       python --version || true
       pip --version || true
       case "${TOXENV}" in
-        'python@2')
+        'py2')
           brew install python2
           brew link --overwrite python2
         ;;
-        'python@3')
+        'py3')
           brew upgrade python
           brew link --overwrite python
         ;;
