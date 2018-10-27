@@ -73,14 +73,14 @@ before_install:
       python --version || true
       pip --version || true
       case "${TOXENV}" in
-          'python@2')
-            brew install python2
-            brew link --overwrite python2
-          ;;
-          'python@3')
-            brew upgrade python
-            brew link --overwrite python
-          ;;
+        'python@2')
+          brew install python2
+          brew link --overwrite python2
+        ;;
+        'python@3')
+          brew upgrade python
+          brew link --overwrite python
+        ;;
       esac
       python -m pip install install --upgrade pip
       python --version
