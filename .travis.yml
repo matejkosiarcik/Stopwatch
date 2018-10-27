@@ -77,7 +77,7 @@ before_install:
           ;;
           'python@3')
             brew upgrade python
-            pip3 install --upgrade pip
+            pip install --upgrade pip
           ;;
       esac
     fi
