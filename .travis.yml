@@ -36,9 +36,16 @@ matrix:
     - python: pypy3.5
 
   include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
+
     # the default is important (should it change to newer version)
     - {os: osx, language: generic, env: TOXENV=py2}
     - {os: osx, language: generic, env: TOXENV=py3}
+    # 10.13
+    - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode10.1}
+    - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode10.1}
     # 10.13
     - {os: osx, language: generic, env: TOXENV=py2, osx_image: xcode10}
     - {os: osx, language: generic, env: TOXENV=py3, osx_image: xcode10}
