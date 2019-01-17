@@ -11,6 +11,8 @@ update: FORCE
 	pip install --upgrade pytest
 
 test: FORCE
+	which rake
+	which ruby
 	python -m pytest 'tests'
 
 install: FORCE
