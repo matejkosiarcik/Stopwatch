@@ -8,11 +8,11 @@ class TestHelpersTests(helpers.TestCase):
     def test_sleep(self):
         slept = helpers.sleep(0.1)
         self.assertTrue(slept >= 0.1)
-        self.assertTrue(slept < 5)
+        self.assertTrue(slept < 6)
 
         slept = helpers.sleep(0.4)
         self.assertTrue(slept >= 0.4)
-        self.assertTrue(slept < 5)
+        self.assertTrue(slept < 6)
 
     def test_total_seconds(self):
         data = [
