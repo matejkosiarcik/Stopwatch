@@ -3,12 +3,17 @@ workflows:
   version: 2
   test:
     jobs:
+      - python
+      - python:latest
       - python:3.7
       - python:3.6
       - python:3.5
       - python:3.4
+      - python:3
+      - python:2.7
+      - python:2
 jobs:
-  python:3.7: &test-template
+  python: &test-template
     docker:
       - image: circleci/${CIRCLE_JOB}
     steps:
@@ -22,9 +27,19 @@ jobs:
             pip --version
             make bootstrap
             make test
+  python:latest:
+    <<: *test-template
+  python:3.7:
+    <<: *test-template
   python:3.6:
     <<: *test-template
   python:3.5:
     <<: *test-template
   python:3.4:
+    <<: *test-template
+  python:3:
+    <<: *test-template
+  python:2.7:
+    <<: *test-template
+  python:2:
     <<: *test-template
