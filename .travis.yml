@@ -89,6 +89,7 @@ before_install:
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
       case "${TOXENV}" in
         'py2')
+          brew list -1 | grep '^python$' && brew remove python
           brew install python2
           brew link --overwrite python2
         ;;
