@@ -3,10 +3,6 @@ version: 2
 commands:
   main:
     description: "Main commands"
-    parameters:
-      unused:
-        type: string
-        default: ""
     steps:
       - run: make bootstrap
       - run: make test
