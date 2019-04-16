@@ -33,18 +33,12 @@ jobs:
             python -m venv venv
             . venv/bin/activate
       - main: {}
-  python:latest:
-    <<: *python3-template
-  python:3.7:
-    <<: *python3-template
-  python:3.6:
-    <<: *python3-template
-  python:3.5:
-    <<: *python3-template
-  python:3.4:
-    <<: *python3-template
-  python:3:
-    <<: *python3-template
+  python:latest: {<<: *python3-template}
+  python:3.7: {<<: *python3-template}
+  python:3.6: {<<: *python3-template}
+  python:3.5: {<<: *python3-template}
+  python:3.4: {<<: *python3-template}
+  python:3: {<<: *python3-template}
 
   python:2: &python2-template
     docker:
@@ -58,5 +52,4 @@ jobs:
             virtualenv venv
             . venv/bin/activate
       - main: {}
-  python:2.7:
-    <<: *python2-template
+  python:2.7: {<<: *python2-template}
