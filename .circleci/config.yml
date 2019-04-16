@@ -1,4 +1,12 @@
 version: 2
+
+commands:
+  main:
+    description: "Main commands"
+    steps:
+      - run: make bootstrap
+      - run: make test
+
 workflows:
   version: 2
   test:
@@ -12,6 +20,7 @@ workflows:
       - python:3
       - python:2.7
       - python:2
+
 jobs:
   python: &python3-template
     docker:
@@ -19,12 +28,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run tests
+          name: Make env
           command: |
             python -m venv venv
             . venv/bin/activate
-            make bootstrap
-            make test
+      - main
   python:latest:
     <<: *python3-template
   python:3.7:
@@ -44,12 +52,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run tests
+          name: Make env
           command: |
             mkdir venv
             virtualenv venv
             . venv/bin/activate
-            make bootstrap
-            make test
+      - main
   python:2.7:
     <<: *python2-template
