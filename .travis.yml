@@ -19,13 +19,6 @@ python:
   - pypy3
   - pypy3.5
 
-addons:
-  homebrew:
-    update: true
-    packages:
-      - python2
-      - python3
-
 matrix:
   fast_finish: true
 
@@ -47,11 +40,19 @@ matrix:
       os: osx
       language: generic
       env: TOXENV=py2
+      addons:
+        homebrew:
+          update: true
+          packages: python2
 
     - &mac-py3
       os: osx
       language: generic
       env: TOXENV=py3
+      addons:
+        homebrew:
+          update: true
+          packages: python3
 
     # 10.14
     - {<<: *mac-py2, osx_image: xcode10.2}
@@ -91,13 +92,6 @@ matrix:
     - {<<: *mac-py3, osx_image: xcode6.4}
 
 before_install:
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew uninstall --ignore-dependencies python3;;
-        'py3') brew uninstall --ignore-dependencies python2;;
-      esac
-    fi
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ] && [ "${TOXENV}" == 'py3' ]; then
       python3 -m venv env
