@@ -42,7 +42,6 @@ matrix:
       env: TOXENV=py2
       addons:
         homebrew:
-          update: true
           packages: python2
 
     - &mac-py3
@@ -51,7 +50,6 @@ matrix:
       env: TOXENV=py3
       addons:
         homebrew:
-          update: true
           packages: python3
 
     # 10.14
