@@ -5,10 +5,10 @@ MAKEFLAGS += --warn-undefined-variables
 FORCE:
 
 bootstrap: FORCE
-	pip install pytest
+	pip install -r 'requirements-dev.txt'
 
 update: FORCE
-	pip install --upgrade pytest
+	pip install --upgrade -r 'requirements-dev.txt'
 
 test: FORCE
 	python -m pytest 'tests'
