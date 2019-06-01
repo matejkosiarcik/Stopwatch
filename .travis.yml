@@ -49,9 +49,6 @@ matrix:
       os: osx
       language: generic
       env: TOXENV=py3
-      addons:
-        homebrew:
-          update: true
 
     # 10.14
     - { <<: *mac-py2, osx_image: xcode10.2 }
