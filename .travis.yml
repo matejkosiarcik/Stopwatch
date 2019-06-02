@@ -103,7 +103,7 @@ before_install:
         'py3') brew ls python3 || brew install python3;;
       esac
     fi
-    - |
+  - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
       case "${TOXENV}" in
         'py2') brew outdated python2 || brew upgrade python2;;
