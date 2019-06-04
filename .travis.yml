@@ -133,9 +133,10 @@ before_install:
       esac
       . venv/bin/activate
     fi
+  - pip install --upgrade pip setuptools
 
 install:
-  - make bootstrap
+  - make bootstrap || pip install --upgrade pytest Cython
 
 before_script:
   - uname -a
