@@ -136,7 +136,7 @@ before_install:
   - pip install --upgrade pip setuptools
 
 install:
-  - make bootstrap || pip install --upgrade pytest Cython
+  - pip install --upgrade pytest Cython
 
 before_script:
   - uname -a
