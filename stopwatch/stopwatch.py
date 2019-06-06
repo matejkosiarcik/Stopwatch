@@ -6,9 +6,31 @@ from __future__ import (
 import argparse
 import datetime
 import sys
-import termios
 import threading
 import time
+import platform
+
+
+class TerminalReader:
+    @staticmethod
+    def is_windows():
+        return platform.system.lower() == "windows"
+
+    def __init(self):
+        if is_windows():
+            import msvcrt
+        else:
+            import termios
+            attributes = termios.tcgetattr(sys.stdin.fileno())
+            attributes[3] = attributes[3] & ~termios.ECHO
+            attributes[3] = attributes[3] & ~termios.ICANON
+            termios.tcsetattr(sys.stdin.fileno(), termios.TCSANOW, attributes)
+
+    def read(self):
+        if self.is_windows():
+            return msvcrt.getch().lower()
+        else:
+            return sys.stdin.read(1).lower()
 
 
 def delta_formatted(delta):
@@ -100,10 +122,7 @@ def main(argv=None):
     print("       ------------   ------------")
 
     # setup
-    attributes = termios.tcgetattr(sys.stdin.fileno())
-    attributes[3] = attributes[3] & ~termios.ECHO
-    attributes[3] = attributes[3] & ~termios.ICANON
-    termios.tcsetattr(sys.stdin.fileno(), termios.TCSANOW, attributes)
+    reader = TerminalReader()
 
     # function to print values for user
     def print_update(lap, relative_delta, absolute_delta):
@@ -117,7 +136,7 @@ def main(argv=None):
 
     while True:
         try:
-            command = sys.stdin.read(1).lower()
+            command = reader.read()
         except (KeyboardInterrupt, SystemExit):
             if timer.is_running:
                 timer.stop()
