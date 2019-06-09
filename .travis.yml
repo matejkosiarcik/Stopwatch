@@ -136,7 +136,7 @@ before_install:
   - pip install --upgrade pip setuptools
 
 install:
-  - make bootstrap || pip install pytest
+  - pip install pytest
 
 before_script:
   - uname -a
