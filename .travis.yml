@@ -133,7 +133,6 @@ before_install:
       esac
       . venv/bin/activate
     fi
-  - pip install --upgrade pip setuptools
 
 install:
   - pip install pytest
