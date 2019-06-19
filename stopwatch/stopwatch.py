@@ -11,26 +11,22 @@ import time
 import platform
 
 
-def is_windows():
-    platform.system().lower() == "windows"
-
-
-if is_windows():
+if platform.system().lower() == "windows":
     import msvcrt
 else:
     import termios
 
 
 class TerminalReader:
-    def __init(self):
-        if not is_windows():
+    def __init__(self):
+        if 'termios' in sys.modules:
             attributes = termios.tcgetattr(sys.stdin.fileno())
             attributes[3] = attributes[3] & ~termios.ECHO
             attributes[3] = attributes[3] & ~termios.ICANON
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSANOW, attributes)
 
     def read(self):
-        if is_windows():
+        if 'msvcrt' in sys.modules:
             return msvcrt.getch().lower()
         else:
             return sys.stdin.read(1).lower()
