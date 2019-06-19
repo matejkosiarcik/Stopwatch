@@ -60,7 +60,7 @@ matrix:
       osx_image: xcode10.2
       language: generic
       before_install:
-        - brew uninstall --ignore-dependencies --force python3 python2;;
+        - brew uninstall --ignore-dependencies --force python3 python2
 
     # 10.14
     - { <<: *mac-py2, osx_image: xcode10.2 }
