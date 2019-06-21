@@ -7,6 +7,8 @@ services:
 addons:
   apt:
     update: true
+    packages:
+      - bats
   homebrew:
     update: true
     brewfile: true
@@ -153,4 +155,5 @@ before_script:
   - python -m pytest --version
 
 script:
-  - make test
+  - make unit_test
+  - make docker_test
