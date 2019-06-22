@@ -103,8 +103,8 @@ before_install:
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
       case "${TOXENV}" in
-        'py2') brew install python2;;
-        'py3') brew install python3;;
+        'py2') brew ls python2 || brew install python2;;
+        'py3') brew ls python3 || brew install python3;;
       esac
     fi
   - |
