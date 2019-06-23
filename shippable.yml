@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - 3.7
+  # - 3.6 # this fails starting vm
+  - 3.5
+  - 2.7
+
+build:
+  pre_ci:
+    - uname -a
+    - python --version
+    - pip --version
+  ci:
+    - pip install pytest
+    - make test

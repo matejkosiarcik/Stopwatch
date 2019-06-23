@@ -6,11 +6,13 @@ import helpers
 
 class TestHelpersTests(helpers.TestCase):
     def test_sleep(self):
-        waited = helpers.sleep(0.3)
-        self.assertTrue(waited >= 0.3 and waited < 2.5)
+        slept = helpers.sleep(0.1)
+        self.assertTrue(slept >= 0.1)
+        self.assertTrue(slept < 6)
 
-        waited = helpers.sleep(0.5)
-        self.assertTrue(waited >= 0.5 and waited < 2.5)
+        slept = helpers.sleep(0.4)
+        self.assertTrue(slept >= 0.4)
+        self.assertTrue(slept < 6)
 
     def test_total_seconds(self):
         data = [
