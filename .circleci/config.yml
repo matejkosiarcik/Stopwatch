@@ -14,7 +14,7 @@ commands:
       - run:
           name: Prepare dependencies
           command: |
-            make bootstrap
+            python -m pip install pytest
             python -m pytest --version
   test:
     steps:
