@@ -9,12 +9,13 @@ commands:
             uname -a
             python --version
             pip --version
-            python -m pytest --version
   bootstrap:
     steps:
       - run:
           name: Prepare dependencies
-          command: make bootstrap
+          command: |
+            make bootstrap
+            python -m pytest --version
   test:
     steps:
       - run:
