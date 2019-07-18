@@ -14,7 +14,6 @@ dist:
 os:
   - linux
   - osx
-    language: generic
   # TODO: - windows
 
 python:
