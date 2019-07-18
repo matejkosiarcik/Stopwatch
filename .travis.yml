@@ -54,9 +54,7 @@ osx_image:
 env:
   - ""
   - TOXENV=py2
-    language: generic
   - TOXENV=py3
-    language: generic
 
 addons:
   apt:
