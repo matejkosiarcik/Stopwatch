@@ -12,8 +12,9 @@ commands:
   bootstrap:
     steps:
       - run:
-          name: Prepare dependencies
+          name: Install dependencies
           command: |
+            python -m pip install --upgrade pip
             python -m pip install pytest==4.5.0
             python -m pytest --version
   test:
