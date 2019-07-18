@@ -1,5 +1,28 @@
 version: 2.1
 
+commands:
+  python3:
+    steps:
+      - checkout
+      - run:
+          name: Run everything
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            make bootstrap
+            make test
+  python2:
+    steps:
+      - checkout
+      - run:
+          name: Run everything
+          command: |
+            mkdir venv
+            virtualenv venv
+            . venv/bin/activate
+            make bootstrap
+            make test
+
 workflows:
   version: 2
   test:
@@ -17,46 +40,29 @@ workflows:
 jobs:
   python:
     docker: [ image: circleci/python ]
-    steps: &python3
-      - checkout
-      - run:
-          name: Run everything
-          command: |
-            python -m venv venv
-            . venv/bin/activate
-            make bootstrap
-            make test
+    steps: [ python3 ]
   python-latest:
     docker: [ image: circleci/python:latest ]
-    steps: *python3
+    steps: [ python3 ]
   python-37:
     docker: [ image: circleci/python:3.7 ]
-    steps: *python3
+    steps: [ python3 ]
   python-36:
     docker: [ image: circleci/python:3.6 ]
-    steps: *python3
+    steps: [ python3 ]
   python-35:
     docker: [ image: circleci/python:3.5 ]
-    steps: *python3
+    steps: [ python3 ]
   python-34:
     docker: [ image: circleci/python:3.4 ]
-    steps: *python3
+    steps: [ python3 ]
   python-3:
     docker: [ image: circleci/python:3 ]
-    steps: *python3
+    steps: [ python3 ]
 
   python-2:
     docker: [ image: circleci/python:2 ]
-    steps: &python2
-      - checkout
-      - run:
-          name: Run everything
-          command: |
-            mkdir venv
-            virtualenv venv
-            . venv/bin/activate
-            make bootstrap
-            make test
+    steps: [ python2 ]
   python-27:
     docker: [ image: circleci/python:2 ]
-    steps: *python2
+    steps: [ python2 ]
