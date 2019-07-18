@@ -16,8 +16,7 @@ workflows:
 
 jobs:
   python:
-    docker:
-      - image: circleci/python
+    docker: [ image: circleci/python ]
     steps: &python3
       - checkout
       - run:
@@ -28,33 +27,26 @@ jobs:
             make bootstrap
             make test
   python-latest:
-    docker:
-      - image: circleci/python:latest
+    docker: [ image: circleci/python:latest ]
     steps: *python3
   python-37:
-    docker:
-      - image: circleci/python:3.7
+    docker: [ image: circleci/python:3.7 ]
     steps: *python3
   python-36:
-    docker:
-      - image: circleci/python:3.6
+    docker: [ image: circleci/python:3.6 ]
     steps: *python3
   python-35:
-    docker:
-      - image: circleci/python:3.5
+    docker: [ image: circleci/python:3.5 ]
     steps: *python3
   python-34:
-    docker:
-      - image: circleci/python:3.4
+    docker: [ image: circleci/python:3.4 ]
     steps: *python3
   python-3:
-    docker:
-      - image: circleci/python:3
+    docker: [ image: circleci/python:3 ]
     steps: *python3
 
   python-2:
-    docker:
-      - image: circleci/python:2
+    docker: [ image: circleci/python:2 ]
     steps: &python2
       - checkout
       - run:
@@ -66,6 +58,5 @@ jobs:
             make bootstrap
             make test
   python-27:
-    docker:
-      - image: circleci/python:2
+    docker: [ image: circleci/python:2 ]
     steps: *python2
