@@ -192,5 +192,5 @@ script:
   - make test
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      make docker_test
+      make install_test
     fi
