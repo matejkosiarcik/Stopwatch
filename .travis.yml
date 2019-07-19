@@ -188,3 +188,7 @@ before_script:
 
 script:
   - make test
+  - |
+    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
+      make docker_test
+    fi
