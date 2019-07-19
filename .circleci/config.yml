@@ -34,31 +34,30 @@ commands:
             make test
 
 jobs:
-  python: &python
-    docker: [ image: circleci/$CIRCLE_JOB ]
-    steps: [ python3 ]
+  python: { docker: [ image: circleci/python ], steps: [ python3 ] }
+  python-3: { docker: [ image: circleci/python:3 ], steps: [ python3 ] }
+  python-37: { docker: [ image: circleci/python:3.7 ], steps: [ python3 ] }
+  python-36: { docker: [ image: circleci/python:3.6 ], steps: [ python3 ] }
+  python-35: { docker: [ image: circleci/python:3.5 ], steps: [ python3 ] }
+  python-34: { docker: [ image: circleci/python:3.4 ], steps: [ python3 ] }
 
-  python-37: { <<: *python, docker: [ image: circleci/python:3.7 ] }
-  python-36: { <<: *python, docker: [ image: circleci/python:3.6 ] }
-  python-35: { <<: *python, docker: [ image: circleci/python:3.5 ] }
-  python-34: { <<: *python, docker: [ image: circleci/python:3.4 ] }
-  python-3: { <<: *python, docker: [ image: circleci/python:3 ] }
+  python-2: { docker: [ image: circleci/python:2 ], steps: [ python2 ] }
+  python-27: { docker: [ image: circleci/python:2.7 ], steps: [ python2 ] }
 
-  python-2: { <<: *python, docker: [ image: circleci/python:2 ], steps: [ python2 ] }
-  python-27: { <<: *python, docker: [ image: circleci/python:2 ], steps: [ python2 ] }
-
-  latest: { <<: *python }
-  buster: { <<: *python }
-  stretch: { <<: *python }
-  rc: { <<: *python }
-  rc-node: { <<: *python }
-  stretch-node: { <<: *python }
-  latest-node: { <<: *python }
-  buster-node: { <<: *python }
-  rc-browsers: { <<: *python }
-  stretch-browsers: { <<: *python }
-  latest-browsers: { <<: *python }
-  buster-browsers: { <<: *python }
+  latest: &python-other
+    docker: [ image: circleci/python:$CIRCLE_JOB ]
+    steps: [ python3 ] }
+  buster: { <<: *python-other }
+  stretch: { <<: *python-other }
+  rc: { <<: *python-other }
+  rc-node: { <<: *python-other }
+  stretch-node: { <<: *python-other }
+  latest-node: { <<: *python-other }
+  buster-node: { <<: *python-other }
+  rc-browsers: { <<: *python-other }
+  stretch-browsers: { <<: *python-other }
+  latest-browsers: { <<: *python-other }
+  buster-browsers: { <<: *python-other }
 
 workflows:
   version: 2
