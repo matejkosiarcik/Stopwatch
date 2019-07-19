@@ -22,6 +22,6 @@ docker_test: FORCE
 	docker image rm --force 'stopwatch:dev'
 
 install_test: FORCE
-	printf "Don\'t run this on system wide python/pip\n" >&2
+	printf "Don\'t run this on system wide python/pip.\n" >&2
 	python -m pip install '.'
 	bats 'shell_tests/system_tests.sh'
