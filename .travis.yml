@@ -14,7 +14,7 @@ dist:
   # - xenial
 
 python:
-  -  # default
+  - # default
   - 2.6
   - 2.7
   - 3.2
