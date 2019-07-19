@@ -46,7 +46,7 @@ jobs:
 
   latest: &python-other
     docker: [ image: circleci/python:$CIRCLE_JOB ]
-    steps: [ python3 ] }
+    steps: [ python3 ]
   buster: { <<: *python-other }
   stretch: { <<: *python-other }
   rc: { <<: *python-other }
