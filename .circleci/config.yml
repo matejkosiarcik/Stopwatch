@@ -34,41 +34,37 @@ commands:
             make test
 
 jobs:
-  python:
-    docker: [ image: circleci/python ]
-    steps: [ python3 ]
-  python-latest:
-    docker: [ image: circleci/python:latest ]
-    steps: [ python3 ]
-  python-37:
-    docker: [ image: circleci/python:3.7 ]
-    steps: [ python3 ]
-  python-36:
-    docker: [ image: circleci/python:3.6 ]
-    steps: [ python3 ]
-  python-35:
-    docker: [ image: circleci/python:3.5 ]
-    steps: [ python3 ]
-  python-34:
-    docker: [ image: circleci/python:3.4 ]
-    steps: [ python3 ]
-  python-3:
-    docker: [ image: circleci/python:3 ]
+  python: &python
+    docker: [ image: circleci/$CIRCLE_JOB ]
     steps: [ python3 ]
 
-  python-2:
-    docker: [ image: circleci/python:2 ]
-    steps: [ python2 ]
-  python-27:
-    docker: [ image: circleci/python:2 ]
-    steps: [ python2 ]
+  python-37: { <<: *python, docker: [ image: circleci/python:3.7 ] }
+  python-36: { <<: *python, docker: [ image: circleci/python:3.6 ] }
+  python-35: { <<: *python, docker: [ image: circleci/python:3.5 ] }
+  python-34: { <<: *python, docker: [ image: circleci/python:3.4 ] }
+  python-3: { <<: *python, docker: [ image: circleci/python:3 ] }
+
+  python-2: { <<: *python, docker: [ image: circleci/python:2 ], steps: [ python2 ] }
+  python-27: { <<: *python, docker: [ image: circleci/python:2 ], steps: [ python2 ] }
+
+  latest: { <<: *python }
+  buster: { <<: *python }
+  stretch: { <<: *python }
+  rc: { <<: *python }
+  rc-node: { <<: *python }
+  stretch-node: { <<: *python }
+  latest-node: { <<: *python }
+  buster-node: { <<: *python }
+  rc-browsers: { <<: *python }
+  stretch-browsers: { <<: *python }
+  latest-browsers: { <<: *python }
+  buster-browsers: { <<: *python }
 
 workflows:
   version: 2
   circleci-test:
     jobs:
       - python
-      - python-latest
       - python-37
       - python-36
       - python-35
@@ -76,3 +72,15 @@ workflows:
       - python-3
       - python-27
       - python-2
+      - latest
+      - buster
+      - stretch
+      - rc
+      - latest-node
+      - buster-node
+      - stretch-node
+      - rc-node
+      - latest-browsers
+      - buster-browsers
+      - stretch-browsers
+      - rc-browsers
