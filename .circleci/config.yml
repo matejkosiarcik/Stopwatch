@@ -33,20 +33,6 @@ commands:
             make bootstrap
             make test
 
-workflows:
-  version: 2
-  circleci-test:
-    jobs:
-      - python
-      - python-latest
-      - python-37
-      - python-36
-      - python-35
-      - python-34
-      - python-3
-      - python-27
-      - python-2
-
 jobs:
   python:
     docker: [ image: circleci/python ]
@@ -76,3 +62,17 @@ jobs:
   python-27:
     docker: [ image: circleci/python:2 ]
     steps: [ python2 ]
+
+workflows:
+  version: 2
+  circleci-test:
+    jobs:
+      - python
+      - python-latest
+      - python-37
+      - python-36
+      - python-35
+      - python-34
+      - python-3
+      - python-27
+      - python-2
