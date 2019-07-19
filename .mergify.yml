@@ -1,4 +1,10 @@
 pull_request_rules:
+  - name: Delete branches after merge
+    conditions:
+      - base=master
+    actions:
+      delete_head_branch: {}
+
   - name: Automatic merge for Owner
     conditions:
       - status-success=stickler-ci
@@ -11,8 +17,7 @@ pull_request_rules:
     actions:
       merge:
         method: merge
-        strict: true
-      delete_head_branch: {}
+
   - name: Automatic merge for dependabot
     conditions:
       - status-success=stickler-ci
@@ -24,6 +29,5 @@ pull_request_rules:
       - base=master
     actions:
       merge:
-        method: merge
+        method: rebase
         strict: true
-      delete_head_branch: {}
