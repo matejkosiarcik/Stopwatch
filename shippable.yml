@@ -12,5 +12,5 @@ build:
     - python --version
     - pip --version
   ci:
-    - pip install pytest
+    - pip install -r 'requirements.txt'
     - make test
