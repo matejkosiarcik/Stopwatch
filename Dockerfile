@@ -5,4 +5,6 @@ LABEL name="matejkosiarcik/stopwatch"
 
 COPY stopwatch/stopwatch.py /
 ENTRYPOINT ["python", "stopwatch.py"]
+# COPY foo.py /
+# ENTRYPOINT ["python", "foo.py"]
 CMD []

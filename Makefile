@@ -33,6 +33,6 @@ docker_test:
 
 .PHONY: install_test
 install_test:
-	printf "Don\'t run this on system wide python/pip.\n" >&2
+	if [ -z "${VIRTUAL_ENV}" ]; then printf 'Run install test inside some virtualenv.' >&2; exit 1; fi
 	python -m pip install '.'
 	bats 'shell_tests/system_tests.sh'
