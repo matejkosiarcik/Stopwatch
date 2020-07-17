@@ -1,8 +1,14 @@
 language: python
-sudo: false
+os: linux
 
-services:
-  - docker
+python:
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7
+  - 3.8
+  # - pypy3
+  # - pypy3.5
 
 addons:
   apt:
@@ -11,147 +17,33 @@ addons:
     update: true
     brewfile: true
 
-python:
-  - 2.6
-  - 2.7
-  - 3.2
-  - 3.3
-  - 3.4
-  - 3.5
-  - 3.5-dev
-  - 3.6
-  - 3.6-dev
-  - 3.7-dev
-  - 3.8-dev
-  - nightly
-  - pypy
-  - pypy2.7
-  - pypy3
-  - pypy3.5
+services:
+  - docker
 
 matrix:
   fast_finish: true
 
-  allow_failures:
-    - python: 3.5-dev
-    - python: 3.6-dev
-    - python: 3.7-dev
-    - python: 3.8-dev
-    - python: nightly
-    - python: pypy2.7
-    - python: pypy3.5
-
   include:
-    - python: 3.7
-      dist: xenial
-      sudo: true
-
-    - &mac-py2
-      os: osx
+    # run these jobs on all branches
+    - os: osx
+    osx_image: xcode12
       language: generic
       env: TOXENV=py2
-    - &mac-py3
-      os: osx
-      language: generic
-      env: TOXENV=py3
-
-    # 10.14
-    - { <<: *mac-py2, osx_image: xcode10.2 }
-    - { <<: *mac-py3, osx_image: xcode10.2 }
-    # 10.13
-    - { <<: *mac-py2, osx_image: xcode10.1 }
-    - { <<: *mac-py3, osx_image: xcode10.1 }
-    # 10.13
-    - { <<: *mac-py2, osx_image: xcode10 }
-    - { <<: *mac-py3, osx_image: xcode10 }
-    # 10.13
-    - { <<: *mac-py2, osx_image: xcode9.4 }
-    - { <<: *mac-py3, osx_image: xcode9.4 }
-    # 10.13
-    - { <<: *mac-py2, osx_image: xcode9.3 }
-    - { <<: *mac-py3, osx_image: xcode9.3 }
-    # 10.12
-    - { <<: *mac-py2, osx_image: xcode9.2 }
-    - { <<: *mac-py3, osx_image: xcode9.2 }
-    # 10.12
-    - { <<: *mac-py2, osx_image: xcode9.1 }
-    - { <<: *mac-py3, osx_image: xcode9.1 }
-    # 10.12
-    - { <<: *mac-py2, osx_image: xcode9 }
-    - { <<: *mac-py3, osx_image: xcode9 }
-    # 10.12
-    - { <<: *mac-py2, osx_image: xcode8.3 }
-    - { <<: *mac-py3, osx_image: xcode8.3 }
-    # 10.11
-    - { <<: *mac-py2, osx_image: xcode8 }
-    - { <<: *mac-py3, osx_image: xcode8 }
-    # 10.11
-    - { <<: *mac-py2, osx_image: xcode7.3 }
-    - { <<: *mac-py3, osx_image: xcode7.3 }
-    # 10.10
-    - { <<: *mac-py2, osx_image: xcode6.4 }
-    - { <<: *mac-py3, osx_image: xcode6.4 }
+      if: branch == master
 
 before_install:
   - |
     if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew uninstall --ignore-dependencies --force python3;;
-        'py3') brew uninstall --ignore-dependencies --force python2;;
-      esac
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew ls python2 || brew install python2;;
-        'py3') brew ls python3 || brew install python3;;
-      esac
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew link --overwrite python2;;
-        'py3') brew link --overwrite python3;;
-      esac
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew outdated python2 || brew upgrade python2;;
-        'py3') brew outdated python3 || brew upgrade python3;;
-      esac
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        'py2') brew link --overwrite python2;;
-        'py3') brew link --overwrite python3;;
-      esac
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
-      case "${TOXENV}" in
-        # 'py2')
-        #     pip2 install --upgrade virtualenv virtualenvwrapper
-        #     mkdir venv
-        #     virtualenv venv
-        # ;;
-        'py3')
-            python3 -m venv venv
-            . venv/bin/activate
-        ;;
-      esac
+      python3 -m venv venv
+      . venv/bin/activate
     fi
 
 install:
-  # - pip install --upgrade pip
-  - pip install pytest
-
-before_script:
-  - uname -a
-  - python --version
-  - pip --version
-  - python -m pytest --version
+  - make bootstrap
 
 script:
   - make test
+  - |
+    if [ "${TRAVIS_OS_NAME}" == 'osx' ]; then
+      make install_test
+    fi

@@ -1,57 +1,29 @@
-version: 2
+version: 2.1
 
-workflows:
-  version: 2
-  test:
-    jobs:
-      - python
-      - python:latest
-      - python:3.7
-      - python:3.6
-      - python:3.5
-      - python:3.4
-      - python:3
-      - python:2.7
-      - python:2
-
-jobs:
-  python: &python3-template
-    docker:
-      - image: circleci/${CIRCLE_JOB}
+commands:
+  python3:
     steps:
-      - checkout
       - run:
-          name: Make env
+          name: Run everything
           command: |
             python -m venv venv
             . venv/bin/activate
             make bootstrap
             make test
-  python:latest:
-    <<: *python3-template
-  python:3.7:
-    <<: *python3-template
-  python:3.6:
-    <<: *python3-template
-  python:3.5:
-    <<: *python3-template
-  python:3.4:
-    <<: *python3-template
-  python:3:
-    <<: *python3-template
 
-  python:2: &python2-template
+workflows:
+  version: 2
+  circleci-test:
+    jobs:
+      - python: { matrix: { parameters: { image: [ python, python:3, python:3.8, python:3.7, python:3.6, python:3.5, python:3.4 ]}}}
+
+jobs:
+  python:
+    parameters:
+      tag:
+        type: string
     docker:
-      - image: circleci/${CIRCLE_JOB}
+      - image: "circleci/<< parameters.image >>"
     steps:
       - checkout
-      - run:
-          name: Make env
-          command: |
-            mkdir venv
-            virtualenv venv
-            . venv/bin/activate
-            make bootstrap
-            make test
-  python:2.7:
-    <<: *python2-template
+      - python3
