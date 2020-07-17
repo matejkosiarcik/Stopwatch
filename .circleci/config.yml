@@ -1,18 +1,8 @@
 version: 2.1
 
 commands:
-  env_info:
-    steps:
-        - run:
-            name: Print env info
-            command: |
-              uname -a
-              python --version
-              pip --version
   python3:
     steps:
-      - checkout
-      - env_info
       - run:
           name: Run everything
           command: |
@@ -20,66 +10,20 @@ commands:
             . venv/bin/activate
             make bootstrap
             make test
-  python2:
-    steps:
-      - checkout
-      - env_info
-      - run:
-          name: Run everything
-          command: |
-            mkdir venv
-            virtualenv venv
-            . venv/bin/activate
-            make bootstrap
-            make test
-
-jobs:
-  python: { docker: [ image: circleci/python ], steps: [ python3 ] }
-  python-3: { docker: [ image: circleci/python:3 ], steps: [ python3 ] }
-  python-37: { docker: [ image: circleci/python:3.7 ], steps: [ python3 ] }
-  python-36: { docker: [ image: circleci/python:3.6 ], steps: [ python3 ] }
-  python-35: { docker: [ image: circleci/python:3.5 ], steps: [ python3 ] }
-  python-34: { docker: [ image: circleci/python:3.4 ], steps: [ python3 ] }
-
-  python-2: { docker: [ image: circleci/python:2 ], steps: [ python2 ] }
-  python-27: { docker: [ image: circleci/python:2.7 ], steps: [ python2 ] }
-
-  latest: &python-other
-    docker: [ image: circleci/python:$CIRCLE_JOB ]
-    steps: [ python3 ]
-  buster: { <<: *python-other }
-  stretch: { <<: *python-other }
-  rc: { <<: *python-other }
-  rc-node: { <<: *python-other }
-  stretch-node: { <<: *python-other }
-  latest-node: { <<: *python-other }
-  buster-node: { <<: *python-other }
-  rc-browsers: { <<: *python-other }
-  stretch-browsers: { <<: *python-other }
-  latest-browsers: { <<: *python-other }
-  buster-browsers: { <<: *python-other }
 
 workflows:
   version: 2
   circleci-test:
     jobs:
-      - python
-      - python-37
-      - python-36
-      - python-35
-      - python-34
-      - python-3
-      - python-27
-      - python-2
-      - latest
-      - buster
-      - stretch
-      - rc
-      - latest-node
-      - buster-node
-      - stretch-node
-      - rc-node
-      - latest-browsers
-      - buster-browsers
-      - stretch-browsers
-      - rc-browsers
+      - python: { matrix: { parameters: { image: [ python, python:3, python:3.8, python:3.7, python:3.6, python:3.5, python:3.4 ]}}}
+
+jobs:
+  python:
+    parameters:
+      tag:
+        type: string
+    docker:
+      - image: "circleci/<< parameters.image >>"
+    steps:
+      - checkout
+      - python3

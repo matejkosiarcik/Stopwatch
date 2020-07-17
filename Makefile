@@ -1,5 +1,6 @@
 # This Makefile does not contain any build steps
 # It only groups common scripts for usage in development
+# TODO: take inspiration from cleardir makefile
 
 MAKEFLAGS += --warn-undefined-variables
 
